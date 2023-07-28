@@ -1,0 +1,25 @@
+services:
+  backend:
+    build:
+      context: ./back-end
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./back-end:/usr/src/api 
+    env_file:
+      - ./back-end/.env.production
+    command: sh -c "yarn prisma migrate dev && yarn start:dev"
+
+
+  frontend:
+    build:
+      context: ./front-end
+      dockerfile: dockerfile
+    ports:
+      - "8080:3000" 
+    volumes:
+      - ./front-end:/usr/src/api
+    env_file:
+      - ./front-end/.env.production
+    command: sh -c "yarn dev"
