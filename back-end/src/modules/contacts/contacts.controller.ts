@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Request,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto } from './dto/create-contact.dto';
@@ -24,7 +25,7 @@ export class ContactsController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   create(@Body() data: CreateContactDto, @Request() req) {
-    return this.contactsService.create(data, req.user.id);
+    return this.contactsService.create(data, Number(req.user.id));
   }
 
   @Get()
@@ -33,7 +34,7 @@ export class ContactsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.contactsService.findOne(id);
   }
 
@@ -43,7 +44,7 @@ export class ContactsController {
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id', ParseIntPipe) id: number) {
     return this.contactsService.remove(id);
   }
 }

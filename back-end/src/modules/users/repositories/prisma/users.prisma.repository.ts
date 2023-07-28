@@ -13,7 +13,10 @@ export class UserPrismaRepository implements UserRepository {
   async create(data: CreateUserDto): Promise<User> {
     const user = new User();
     Object.assign(user, { ...data });
-    const newUser = await this.prisma.user.create({ data: { ...user } });
+    const newUser = await this.prisma.user.create({
+      data: { ...user },
+      include: { contact: true },
+    });
 
     return plainToInstance(User, newUser);
   }
@@ -23,16 +26,19 @@ export class UserPrismaRepository implements UserRepository {
   }
 
   async findone(id: number): Promise<User> {
-    const user = await this.prisma.user.findUnique({ where: { id } });
+    const user = await this.prisma.user.findUnique({
+      where: { id },
+      include: { contact: true },
+    });
 
     return plainToInstance(User, user);
   }
 
   async findByEmail(email: string): Promise<User> {
     const user = await this.prisma.user.findUnique({ where: { email } });
-
     return user;
   }
+
   async update(id: number, data: UpdateUserDto): Promise<User> {
     const user = await this.prisma.user.update({
       where: { id },

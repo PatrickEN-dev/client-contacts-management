@@ -58,9 +58,5 @@ export class CreateUserDto {
     example: '2023-07-25',
   })
   @IsDate()
-  createdAt: Date;
-
-  constructor() {
-    this.createdAt = new Date();
-  }
+  readonly createdAt: Date;
 }

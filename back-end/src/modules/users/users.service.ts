@@ -22,20 +22,20 @@ export class UsersService {
   }
 
   findOne(id: number) {
-    const findUser = this.UserRepository.findone(id);
+    const findUser = this.UserRepository.findone(Number(id));
     if (!findUser) throw new NotFoundException('User not found');
 
     return findUser;
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
-    const findUser = this.UserRepository.findone(id);
+    const findUser = this.UserRepository.findone(Number(id));
     if (!findUser) throw new NotFoundException('User not found');
     return this.UserRepository.update(id, updateUserDto);
   }
 
   remove(id: number) {
-    const findUser = this.UserRepository.findone(id);
+    const findUser = this.UserRepository.findone(Number(id));
     if (!findUser) throw new NotFoundException('User not found');
     return this.UserRepository.delete(id);
   }

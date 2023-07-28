@@ -40,15 +40,10 @@ export class CreateContactDto {
 
   @ApiProperty({
     description: 'O createdAt mostra quando o usuário foi criado',
-    example: '2023-07-25',
+    example: '2023-07-28T17:30:20.447Z',
   })
   @IsDate()
-  createdAt: Date;
-
-  constructor() {
-    this.createdAt = new Date();
-  }
+  readonly createdAt: Date;
 }
 
-//resolver o dto pois contact e user são a mesma coisa
 // Um cliente poderá ter mais de um contato vinculado a ele; ( onde devo fazer )
