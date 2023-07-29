@@ -35,16 +35,16 @@ export class ContactsController {
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.contactsService.findOne(id);
+    return this.contactsService.findOne(Number(id));
   }
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateContactDto: UpdateContactDto) {
-    return this.contactsService.update(id, updateContactDto);
+    return this.contactsService.update(Number(id), updateContactDto);
   }
 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {
-    return this.contactsService.remove(id);
+    return this.contactsService.remove(Number(id));
   }
 }
