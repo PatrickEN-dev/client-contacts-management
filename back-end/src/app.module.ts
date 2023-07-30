@@ -5,5 +5,7 @@ import { ContactModule } from './modules/contacts/contacts.module';
 
 @Module({
   imports: [UsersModule, ContactModule, AuthModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
