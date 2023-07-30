@@ -6,16 +6,6 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // app.useGlobalPipes(
-  //   new ValidationPipe({ whitelist: true }),
-  //   new ValidationPipe({
-  //     transform: true,
-  //     transformOptions: { groups: ['transform'] },
-  //   }),
-  // );
-
-  const teste = 1;
-
   const config = new DocumentBuilder()
     .setTitle('Documentação com Swagger - Client Contact Management')
     .setDescription(

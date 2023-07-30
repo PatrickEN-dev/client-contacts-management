@@ -4,8 +4,8 @@ export class Contact {
   last_name: string;
   email: string;
   telephone: string;
-  readonly createdAt: Date;
   userId: number;
+  readonly createdAt: Date;
 
   constructor() {
     this.createdAt = new Date();

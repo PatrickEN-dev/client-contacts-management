@@ -9,12 +9,14 @@ import {
   UseGuards,
   Request,
   ParseIntPipe,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt/jwt.auth.guard';
+import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('contacts')
 @Controller('contacts')

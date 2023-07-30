@@ -45,5 +45,3 @@ export class CreateContactDto {
   @IsDate()
   readonly createdAt: Date;
 }
-
-// Um cliente poderá ter mais de um contato vinculado a ele; ( onde devo fazer )

@@ -7,35 +7,35 @@ import { ContactsRepository } from './repositories/contact.repository';
 export class ContactsService {
   constructor(private ContactRepository: ContactsRepository) {}
 
-  create(data: CreateContactDto, userId: number) {
-    return this.ContactRepository.create(data, userId);
+  async create(data: CreateContactDto, userId: number) {
+    return await this.ContactRepository.create(data, userId);
   }
 
-  findAll() {
-    return this.ContactRepository.findAll();
+  async findAll() {
+    return await this.ContactRepository.findAll();
   }
 
-  findByEmail(email: string) {
-    const ContactEmail = this.ContactRepository.findByEmail(email);
+  async findByEmail(email: string) {
+    const ContactEmail = await this.ContactRepository.findByEmail(email);
     if (!ContactEmail) throw new NotFoundException('Contact not found');
     return ContactEmail;
   }
 
-  findOne(id: number) {
-    const findContact = this.ContactRepository.findone(id);
+  async findOne(id: number) {
+    const findContact = await this.ContactRepository.findone(id);
     if (!findContact) throw new NotFoundException('Contact not found');
 
     return findContact;
   }
 
-  update(id: number, updateContactDto: UpdateContactDto) {
-    const findContact = this.ContactRepository.findone(id);
+  async update(id: number, updateContactDto: UpdateContactDto) {
+    const findContact = await this.ContactRepository.findone(id);
     if (!findContact) throw new NotFoundException('Contact not found');
     return this.ContactRepository.update(id, updateContactDto);
   }
 
-  remove(id: number) {
-    const findContact = this.ContactRepository.findone(id);
+  async remove(id: number) {
+    const findContact = await this.ContactRepository.findone(id);
     if (!findContact) throw new NotFoundException('Contact not found');
     return this.ContactRepository.delete(id);
   }
