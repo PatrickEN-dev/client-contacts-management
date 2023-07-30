@@ -16,7 +16,7 @@ export default function RootLayout({
               </li>
 
               <li>
-                <Link href={"/api/login"}>Entrar</Link>
+                <Link href={"/auth/login"}>Entrar</Link>
               </li>
 
               <li>
@@ -35,7 +35,7 @@ export default function RootLayout({
         <hr />
 
         <footer>
-          <p>Aprendendo o Next.js 13</p>
+          <p>Contact management</p>
         </footer>
       </body>
     </html>

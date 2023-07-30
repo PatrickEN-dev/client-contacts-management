@@ -17,7 +17,7 @@ export default function LoginPage() {
         >
           <div>
             <label>
-              Primeiro nome
+              Nome
               <input type="text" placeholder="Digite seu nome" />
             </label>
           </div>
@@ -36,10 +36,18 @@ export default function LoginPage() {
             </label>
           </div>
 
+          
           <div>
             <label>
-              Senha
-              <input type="password" placeholder="Digite sua senha" />
+              Email
+              <input type="mail" placeholder="Digite seu email" />
+            </label>
+          </div>
+
+          <div>
+            <label>
+              Telefone
+              <input type="tel" placeholder="Digite seu telefone" />
             </label>
           </div>
 
