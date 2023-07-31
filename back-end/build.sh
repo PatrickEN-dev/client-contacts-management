@@ -1,3 +1,3 @@
 yarn
 yarn build
-yarn prisma migrate prod
+yarn prisma migrate dev
