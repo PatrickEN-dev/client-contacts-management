@@ -1,25 +1,43 @@
+version: '3.9'
+
 services:
-  backend:
+  back-end:
+    container_name: contact_management_back
     build:
-      context: ./back-end
-      dockerfile: dockerfile
+      context: ./back-end/
     ports:
-      - "3000:3000"
-    volumes:
-      - ./back-end:/usr/src/api 
+      - $PORT:$PORT
     env_file:
-      - ./back-end/.env.production
+      - .env
+    depends_on:
+      database:
+        condition: service_healthy
     command: sh -c "yarn prisma migrate dev && yarn start:dev"
-
-
-  frontend:
-    build:
-      context: ./front-end
-      dockerfile: dockerfile
-    ports:
-      - "8080:3000" 
     volumes:
-      - ./front-end:/usr/src/api
+      - ./back-end/:/app 
+    
+  database:
+    container_name: db_contact_management
+    image: postgres:15
+    ports:
+      - 5432:5432
     env_file:
-      - ./front-end/.env.production
+      - .env
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  front-end:
+    container_name: contact_management_front
+    build:
+      context: ./front-end/
+    ports:
+      - "3000:3000" 
+    depends_on:
+      - back-end
     command: sh -c "yarn dev"
+    volumes:
+      - ./front-end/:/app
