@@ -1,31 +1,40 @@
 "use client";
+import { LoginData, loginSchema } from "@/schemas/login.schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { NextPage } from "next";
+import { useForm } from "react-hook-form";
 
-import { useRouter } from "next/navigation";
 
-export default function LoginPage() {
-  const router = useRouter();
+export const Login: NextPage = () => {
+    const { register, handleSubmit } = useForm<LoginData>({
+      resolver: zodResolver(loginSchema),
+    })
+  
+    const onFormSubmit = (formData: LoginData) => {
+      console.log(formData)
+    } 
   return (
     <>
       <main>
         <h1>Página de Login</h1>
 
-        <form
-          onSubmit={(event) => {
-            router.push("/users");
-            event.preventDefault();
-          }}
-        >
+        <form action="#"
+          method="POST"
+          onSubmit={handleSubmit(onFormSubmit)}>
+
           <div>
             <label>
               Email
-              <input type="mail" placeholder="Digite seu email" />
+              <input  id="email" type="mail" placeholder="Digite seu email" autoComplete="email"
+                required {...register("email")} />
             </label>
           </div>
 
           <div>
             <label>
               Senha
-              <input type="password" placeholder="Digite sua senha" />
+              <input autoComplete="current-password" required type="password" placeholder="Digite sua senha" 
+              {...register("password")}/>
             </label>
           </div>
 
