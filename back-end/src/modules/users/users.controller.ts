@@ -29,6 +29,7 @@ export class UsersController {
   }
 
   @Get()
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   findAll() {
@@ -36,6 +37,7 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   findOne(@Param('id', ParseIntPipe) id: number) {
@@ -43,6 +45,7 @@ export class UsersController {
   }
 
   @Patch(':id')
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
@@ -50,6 +53,7 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   remove(@Param('id', ParseIntPipe) id: number) {
