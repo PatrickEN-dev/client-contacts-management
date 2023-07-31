@@ -1,46 +1,63 @@
 "use client";
 import { LoginData, loginSchema } from "@/schemas/login.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { NextPage } from "next";
 import { useForm } from "react-hook-form";
+import {
+  MainContainer,
+  InnerContainer,
+  Title,
+  Form,
+  Label,
+  Input,
+  SubmitButton,
+} from "./styles";
 
 
-export const Login: NextPage = () => {
-    const { register, handleSubmit } = useForm<LoginData>({
-      resolver: zodResolver(loginSchema),
-    })
-  
-    const onFormSubmit = (formData: LoginData) => {
-      console.log(formData)
-    } 
+
+const Login = () => {
+  const { register, handleSubmit } = useForm<LoginData>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onFormSubmit = (formData: LoginData) => {
+    console.log(formData);
+  };
+
   return (
-    <>
-      <main>
-        <h1>Página de Login</h1>
+    <MainContainer>
+      <Title>Página de Login</Title>
 
-        <form action="#"
-          method="POST"
-          onSubmit={handleSubmit(onFormSubmit)}>
+      <Form onSubmit={handleSubmit(onFormSubmit)}>
+        <InnerContainer>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Digite seu email"
+            autoComplete="email"
+            required
+            {...register("email")}
+          />
+        </InnerContainer>
 
-          <div>
-            <label>
-              Email
-              <input  id="email" type="mail" placeholder="Digite seu email" autoComplete="email"
-                required {...register("email")} />
-            </label>
-          </div>
+        <InnerContainer>
+          <Label htmlFor="password">Senha</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Digite sua senha"
+            autoComplete="current-password"
+            required
+            {...register("password")}
+          />
+        </InnerContainer>
 
-          <div>
-            <label>
-              Senha
-              <input autoComplete="current-password" required type="password" placeholder="Digite sua senha" 
-              {...register("password")}/>
-            </label>
-          </div>
-
-          <button type="submit">Entrar</button>
-        </form>
-      </main>
-    </>
+        <InnerContainer>
+          <SubmitButton type="submit">Entrar</SubmitButton>
+        </InnerContainer>
+      </Form>
+    </MainContainer>
   );
-}
+};
+
+export default Login;

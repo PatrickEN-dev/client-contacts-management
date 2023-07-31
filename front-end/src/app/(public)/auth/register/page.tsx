@@ -1,59 +1,55 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { Form, InnerContainer, Input, Label, MainContainer, SubmitButton, Title } from "./style";
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const router = useRouter();
   return (
     <>
-      <main>
-        <h1>Página de Cadastro</h1>
+    <MainContainer>
+      <Title>Página de Cadastro</Title>
 
-        <form
-          onSubmit={(event) => {
-            router.push("/auth/login");
-            event.preventDefault();
-          }}
-        >
-          <div>
-            <label>
-              Nome
-              <input type="text" placeholder="Digite seu nome" />
-            </label>
-          </div>
+      <Form
+        onSubmit={(event) => {
+          router.push("/auth/login");
+          event.preventDefault();
+        }}
+      >
+        <InnerContainer>
+          <Label>
+            Nome
+            <Input type="text" placeholder="Digite seu nome" />
+          </Label>
+        </InnerContainer>
 
-          <div>
-            <label>
-              Sobrenome
-              <input type="text" placeholder="Digite seu nome" />
-            </label>
-          </div>
+        <InnerContainer>
+          <Label>
+            Sobrenome
+            <Input type="text" placeholder="Digite seu sobrenome" />
+          </Label>
+        </InnerContainer>
 
-          <div>
-            <label>
-              Email
-              <input type="mail" placeholder="Digite seu email" />
-            </label>
-          </div>
+        <InnerContainer>
+          <Label>
+            Email
+            <Input type="mail" placeholder="Digite seu email" />
+          </Label>
+        </InnerContainer>
 
-          
-          <div>
-            <label>
-              Email
-              <input type="mail" placeholder="Digite seu email" />
-            </label>
-          </div>
+        <InnerContainer>
+          <Label>
+            Telefone
+            <Input type="tel" placeholder="Digite seu telefone" />
+          </Label>
+        </InnerContainer>
 
-          <div>
-            <label>
-              Telefone
-              <input type="tel" placeholder="Digite seu telefone" />
-            </label>
-          </div>
-
-          <button type="submit">Cadastrar</button>
-        </form>
-      </main>
-    </>
+        
+          <InnerContainer>
+            <SubmitButton type="submit">Cadastrar</SubmitButton>
+          </InnerContainer>
+      </Form>
+    </MainContainer>
+  </>
   );
 }

@@ -35,7 +35,7 @@ export default function RootLayout({
         <hr />
 
         <footer>
-          <p>Contact management</p>
+          <p>Aprendendo o Next.js 13</p>
         </footer>
       </body>
     </html>
