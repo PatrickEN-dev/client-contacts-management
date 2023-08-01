@@ -18,13 +18,7 @@ export default function RootLayout({
         </header>
 
         <h1>Layout da página users</h1>
-
-        <hr />
-
         {children}
-
-        <hr />
-
         <footer>
           <p>Contact management</p>
         </footer>

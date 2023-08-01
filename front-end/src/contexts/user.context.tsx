@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import { IProviderChildrenProps } from "./interfaces";
-import { API } from "@/app/(private)/users/services/api";
+import { API } from "@/services/api";
 
 export const UserRequestsContext = createContext({});
 

@@ -13,8 +13,8 @@ import {
 } from "./styles";
 
 
-
-const Login = () => {
+export default function Login () {
+  
   const { register, handleSubmit } = useForm<LoginData>({
     resolver: zodResolver(loginSchema),
   });
@@ -59,5 +59,3 @@ const Login = () => {
     </MainContainer>
   );
 };
-
-export default Login;

@@ -1,9 +1,7 @@
-import { getUsersById } from "../services/get-user-by-id";
-import OtherUsers from "../components/other-users";
+import { IUserDatails } from "@/@types/users.types";
+import { getUsersById } from "../../../../services/users/gets/get-user-by-id";
+import OtherUsers from "../../contacts/page";
 
-export interface IUserDatails {
-  userId: string;
-}
 
 export default async function UserDatailsPage({
   params,
@@ -25,7 +23,7 @@ export default async function UserDatailsPage({
 
         <hr />
 
-        <h3>Outros usuários</h3>
+        <h3>Seus contatos</h3>
 
         <OtherUsers currentUserId={params.userId} />
       </main>

@@ -25,15 +25,8 @@ export default function RootLayout({
             </ul>
           </nav>
         </header>
-
         <h1>Layout de rotas autenticadas</h1>
-
-        <hr />
-
         {children}
-
-        <hr />
-
         <footer>
           <p>Aprendendo o Next.js 13</p>
         </footer>

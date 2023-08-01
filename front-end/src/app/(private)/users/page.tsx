@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getUsers } from "./services/get-users";
+import { getUsers } from "../../../services/users/gets/get-users";
 
 export default async function userPage() {
   const usersData = await getUsers();
@@ -7,8 +7,8 @@ export default async function userPage() {
   return (
     <>
       <main>
-        <h1>Página do usuário</h1>
-        <h3>Usuários</h3>
+        <h1>Página Principal usuário logado</h1>
+        <h3>Contatos</h3>
         <ul>
           {usersData.map((user: any) => (
             <li key={user.id}>

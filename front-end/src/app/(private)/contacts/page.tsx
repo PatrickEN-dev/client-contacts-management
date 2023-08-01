@@ -1,20 +1,12 @@
 "use client";
 
-//page de user
 import { useEffect, useState } from "react";
-import { getUsers } from "../../services/get-users";
 import Link from "next/link";
+import { IUser } from "@/@types/users.types";
+import { getUsers } from "@/services/users/gets/get-users";
 
 interface IOtherUsers {
   currentUserId: string;
-}
-
-interface IUser {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  telephone: string
 }
 
 export default function OtherUsers({ currentUserId }: IOtherUsers) {
@@ -32,16 +24,12 @@ export default function OtherUsers({ currentUserId }: IOtherUsers) {
     fetchUsers();
   }, [currentUserId]);
 
-  if (otherUsers.length === 0) {
-    return <p>carregando...</p>;
-  }
-
   return (
     <ul>
       {otherUsers.map((user) => (
         <li key={user.id}>
           <Link href={`/users/${user.id}`}>
-            {user.first_name} {user.last_name} ({user.email} {user.telephone})
+            {user.first_name} {user.last_name} ({user.email})
           </Link>
         </li>
       ))}
