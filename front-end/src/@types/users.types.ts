@@ -7,5 +7,5 @@ export type IUser = {
 };
 
 export interface IUserDatails {
-  userId: string;
+  userId: number;
 }

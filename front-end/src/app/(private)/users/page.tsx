@@ -1,8 +1,11 @@
+import { IUser } from "@/@types/users.types";
+import { USerCrudContext } from "@/contexts/users/userCrudContext";
 import Link from "next/link";
-import { getUsers } from "../../../services/users/gets/get-users";
+import { useContext } from "react";
 
 export default async function userPage() {
-  const usersData = await getUsers();
+  const {getUsers} = useContext(USerCrudContext)
+  const usersData: IUser[] = await getUsers()
 
   return (
     <>
@@ -10,7 +13,7 @@ export default async function userPage() {
         <h1>Página Principal usuário logado</h1>
         <h3>Contatos</h3>
         <ul>
-          {usersData.map((user: any) => (
+          {usersData.map((user: IUser) => (
             <li key={user.id}>
               <Link href={`/users/${user.id}`}>
                 {user.first_name} {user.last_name}({user.email})

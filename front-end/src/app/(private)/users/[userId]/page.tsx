@@ -1,6 +1,7 @@
-import { IUserDatails } from "@/@types/users.types";
-import { getUsersById } from "../../../../services/users/gets/get-user-by-id";
+import { IUser, IUserDatails } from "@/@types/users.types";
 import OtherUsers from "../../contacts/page";
+import { USerCrudContext } from "@/contexts/users/userCrudContext";
+import { useContext } from "react";
 
 
 export default async function UserDatailsPage({
@@ -8,7 +9,8 @@ export default async function UserDatailsPage({
 }: {
   params: IUserDatails;
 }) {
-  const userDataById = await getUsersById(params.userId);
+  const {getUserById} = useContext(USerCrudContext)
+  const userDataById: IUser = await getUserById(params.userId)
 
   return (
     <>

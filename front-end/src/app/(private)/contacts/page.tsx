@@ -1,22 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { IUser } from "@/@types/users.types";
-import { getUsers } from "@/services/users/gets/get-users";
+import { USerCrudContext } from "@/contexts/users/userCrudContext";
 
 interface IOtherUsers {
-  currentUserId: string;
+  currentUserId: number;
 }
 
 export default function OtherUsers({ currentUserId }: IOtherUsers) {
+
+  const {getUsers} = useContext(USerCrudContext)
+  
   const [otherUsers, setOtherUsers] = useState<IUser[]>([]);
 
   useEffect(() => {
     const fetchUsers = async () => {
       const users = await getUsers();
       const others = users.filter(
-        (user: IUser) => user.id !== parseInt(currentUserId)
+        (user: IUser) => user.id !== currentUserId
       );
       setOtherUsers(others);
     };
