@@ -7,19 +7,29 @@ export const USerCrudContext = createContext<IUserListContext>({} as IUserListCo
 
 export const UsercrudProvider = ({children}: IProviderChildrenProps) => {
 
-async function getUsers() {
-    const response = await API.get("/users");
-
-    const users: IUser[] = response.data;
-
-    return users || [];
+  async function getUsers() {
+    try {
+      const response = await API.get<IUser[]>("/users");
+  
+      const users: IUser[] = response.data;
+  
+      return users || [];
+    } catch (error) {
+      console.error(error);
+      throw new Error("usuários não encontrados")
+    }
   }
 
   async function getUserById(userId: number) {
-    const response = await API.get(`/users/${userId}`);
-    
-    const users = response.data;
-    return users;
+    try {
+      const response = await API.get<IUser>(`/users/${userId}`);
+
+      const user = response.data;
+      return user;
+    } catch (error) {
+      console.error(error);
+      throw new Error("usuários não encontrados")
+    }
   }
 
   return (

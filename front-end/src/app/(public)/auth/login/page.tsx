@@ -1,5 +1,5 @@
 "use client";
-import { LoginData, loginSchema } from "@/schemas/login.schema";
+import { loginSchema } from "@/schemas/users.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -11,6 +11,7 @@ import {
   Input,
   SubmitButton,
 } from "./styles";
+import { LoginData } from "@/@types/users.types";
 
 
 export default function Login () {

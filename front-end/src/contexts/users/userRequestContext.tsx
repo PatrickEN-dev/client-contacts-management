@@ -3,7 +3,6 @@ import { IProviderChildrenProps, IUserLoginForm, IUserLoginResponse, IUserRegist
 import { API } from "@/services/api";
 import { toast } from 'react-toastify';
 import axios from "axios";
-import { IContact } from "../contact/interfaces";
 
 
 export const UserRequestsContext = createContext<IUserRequestContext>({} as IUserRequestContext);

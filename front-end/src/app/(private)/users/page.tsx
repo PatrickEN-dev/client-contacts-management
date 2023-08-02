@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 export default async function userPage() {
   const {getUsers} = useContext(USerCrudContext)
-  const usersData: IUser[] = await getUsers()
+  const usersData = await getUsers()
 
   return (
     <>

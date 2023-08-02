@@ -1,6 +1,5 @@
 import React from "react";
 import { SetStateAction } from "react";
-import { IContact } from "../contact/interfaces";
 import { IUser } from "@/@types/users.types";
 
 export interface IProviderChildrenProps {
@@ -26,7 +25,7 @@ export type iAxiosError = {
 };
 
 export interface IUserListContext {
-  getUsers: () => Promise<IUser[]>;
+  getUsers: () => Promise<IUser[] | []>;
   getUserById: (userId: number) => Promise<IUser>;
 }
 
