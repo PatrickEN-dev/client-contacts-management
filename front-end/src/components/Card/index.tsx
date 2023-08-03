@@ -1,3 +1,4 @@
+import styles from "./styles.module.scss";
 import { IContact } from "@/contexts/contact/interfaces";
 import Link from "next/link";
 
@@ -8,7 +9,7 @@ interface ICardProps {
 export default function Card({ user }: ICardProps) {
   return (
     <>
-      <li>
+      <li className={styles.cardContent}>
         <Link href={`/contacts/${user.id}`}>
           <h3>
             {user.first_name} {user.last_name}
