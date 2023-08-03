@@ -2,7 +2,8 @@ import { iAxiosError } from "../users/interfaces";
 
 export type IContact = {
   id: number;
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   telehone: string;
   error?: string | undefined;
@@ -15,6 +16,7 @@ export interface IContactContext {
   contacts: IContact[];
   setContacts: React.Dispatch<React.SetStateAction<IContact[]>>;
   closeModal: () => void;
+
   createContactRequest: (
     data: IContact
   ) => Promise<IContact | iAxiosError | void>;

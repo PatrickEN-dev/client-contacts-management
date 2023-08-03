@@ -1,16 +1,17 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { IContact, IContactContext } from "./interfaces";
 import { IProviderChildrenProps, iAxiosError } from "../users/interfaces";
 import { API } from "@/services/api";
 import { toast } from "react-toastify";
 import axios, { AxiosResponse } from "axios";
 
-export const UserContactsContext = createContext<IContactContext>({} as IContactContext);
+export const UserContactsContext = createContext<IContactContext>(
+  {} as IContactContext
+);
 
 export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
   const [showModal, setShowModal] = useState("");
-  const [contacts, setContacts] = useState<IContact[]>([])
-
+  const [contacts, setContacts] = useState<IContact[]>([]);
 
   const token = localStorage.getItem("@TOKEN") || "";
 
@@ -18,33 +19,50 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
     setShowModal("");
   };
 
-  const createContactRequest = async (data: IContact): Promise<IContact | iAxiosError | void> => {
+  useEffect(() => {
+    async function getContacts() {
+      try {
+        const response = await API.get<IContact[]>("/contacts");
+
+        const contacts: IContact[] = response.data;
+        setContacts(contacts);
+      } catch (error) {
+        console.error(error);
+        throw new Error("Contatos não encontrados");
+      }
+    }
+    getContacts();
+  }, []);
+
+  const createContactRequest = async (
+    data: IContact
+  ): Promise<IContact | iAxiosError | void> => {
     try {
-      const response: AxiosResponse<IContact> = await API.post("/users/contacts", data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response: AxiosResponse<IContact> = await API.post(
+        "contacts",
+        data,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
       toast.success("Contato criado com sucesso!");
       const createdContact = response.data;
       setContacts([...contacts, createdContact]);
-      
+
       closeModal();
 
       return response.data;
     } catch (error) {
-        if (axios.isAxiosError<iAxiosError>(error)) {
-            const errorMessage = error.response?.data?.message;
-            toast.error(errorMessage);
-          }
-          console.error(error);
-          toast.error('Não foi possível realizar o cadastro');
+      if (axios.isAxiosError<iAxiosError>(error)) {
+        const errorMessage = error.response?.data?.message;
+        toast.error(errorMessage);
+      }
+      console.error(error);
+      toast.error("Não foi possível realizar o cadastro");
     }
   };
 
   const updateContactRequest = async (data: IContact, id: number) => {
     try {
-      await API.put(`/users/contacts/${id}`, data, {
+      await API.put(`contacts/${id}`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -65,7 +83,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
 
   const deleteContactRequest = async (id: number) => {
     try {
-      await API.delete(`/users/contacts/${id}`, {
+      await API.delete(`/contacts/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

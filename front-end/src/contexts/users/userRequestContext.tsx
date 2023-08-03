@@ -1,11 +1,19 @@
-import React, { createContext, useEffect, useState } from "react";
-import { IProviderChildrenProps, IUserLoginForm, IUserLoginResponse, IUserRegister, IUserRequestContext, iAxiosError } from "./interfaces";
+import React, { createContext, useState } from "react";
+import {
+  IProviderChildrenProps,
+  IUserLoginForm,
+  IUserLoginResponse,
+  IUserRegister,
+  IUserRequestContext,
+  iAxiosError,
+} from "./interfaces";
 import { API } from "@/services/api";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import axios from "axios";
 
-
-export const UserRequestsContext = createContext<IUserRequestContext>({} as IUserRequestContext);
+export const UserRequestsContext = createContext<IUserRequestContext>(
+  {} as IUserRequestContext
+);
 
 export default function UserRequestsProvider({
   children,
@@ -14,34 +22,32 @@ export default function UserRequestsProvider({
 
   const createUserRequest = async (data: IUserRegister) => {
     try {
-      await API.post<IUserRegister>('/users', data);
+      await API.post<IUserRegister>("/users", data);
 
-      toast.success('Cadastro realizado com sucesso!');
-
+      toast.success("Cadastro realizado com sucesso!");
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
         toast.error(errorMessage);
       }
       console.error(error);
-      toast.error('Não foi possível realizar o cadastro');
+      toast.error("Não foi possível realizar o cadastro");
     }
   };
 
   const loginUserRequest = async (data: IUserLoginForm) => {
     try {
-      const response = await API.post<IUserLoginResponse>('/login', data);
+      const response = await API.post<IUserLoginResponse>("/login", data);
 
-      toast.success('Login realizado com sucesso!');
+      toast.success("Login realizado com sucesso!");
       setUser(response.data);
-
     } catch (error) {
       if (axios.isAxiosError<iAxiosError>(error)) {
         const errorMessage = error.response?.data?.message;
         toast.error(errorMessage);
       }
       console.error(error);
-      toast.error('Não foi possivel realizar o login');
+      toast.error("Não foi possivel realizar o login");
     }
   };
 
@@ -70,9 +76,10 @@ export default function UserRequestsProvider({
   //   autoLogin(userID);
   // }, []);
 
-
   return (
-    <UserRequestsContext.Provider value={{user, setUser, createUserRequest, loginUserRequest}}>
+    <UserRequestsContext.Provider
+      value={{ user, setUser, createUserRequest, loginUserRequest }}
+    >
       {children}
     </UserRequestsContext.Provider>
   );

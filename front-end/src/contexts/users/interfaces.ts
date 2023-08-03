@@ -25,7 +25,6 @@ export type iAxiosError = {
 };
 
 export interface IUserListContext {
-  getUsers: () => Promise<IUser[] | []>;
   getUserById: (userId: number) => Promise<IUser>;
 }
 
