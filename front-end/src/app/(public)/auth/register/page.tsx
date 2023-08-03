@@ -46,13 +46,6 @@ export default function RegisterPage() {
           </InnerContainer>
 
           <InnerContainer>
-            <Label>
-              Telefone
-              <Input type="tel" placeholder="Digite seu telefone" />
-            </Label>
-          </InnerContainer>
-
-          <InnerContainer>
             <SubmitButton type="submit">Cadastrar</SubmitButton>
           </InnerContainer>
         </Form>

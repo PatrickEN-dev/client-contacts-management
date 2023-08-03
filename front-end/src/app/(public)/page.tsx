@@ -1,13 +1,15 @@
-"use client"
-import { HomeContent, Title, Description } from "./styles";
+"use client";
+import "@/scss/main.scss";
 
 export default function Home() {
   return (
-    <HomeContent>
-      <Title>Bem-vindo à nossa breve Home Page!</Title>
-      <Description>
-        Esta é uma página simples e agradável criada com Styled Components.
-      </Description>
-    </HomeContent>
+    <>
+      <main>
+        <h1>Bem-vindo à nossa breve Home Page!</h1>
+        <p>
+          Esta é uma página simples e agradável criada com Styled Components.
+        </p>
+      </main>
+    </>
   );
 }
