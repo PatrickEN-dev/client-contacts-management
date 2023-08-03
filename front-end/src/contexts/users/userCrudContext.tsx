@@ -2,7 +2,6 @@ import { API } from "@/services/api";
 import { createContext, useContext } from "react";
 import { IProviderChildrenProps, IUserListContext } from "./interfaces";
 import { IUser } from "@/@types/users.types";
-import { toast } from "react-toastify";
 import { UserRequestsContext } from "./userRequestContext";
 
 export const USerCrudContext = createContext<IUserListContext>(
