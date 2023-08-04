@@ -28,7 +28,7 @@ export default function LoginForm() {
           id={"email"}
           label="Email"
           type="mail"
-          placeholder="Digite seu nome"
+          placeholder="Digite seu Email"
           {...register("email")}
         />
         <p>{errors && errors.email?.message}</p>
@@ -39,14 +39,14 @@ export default function LoginForm() {
           label="Senha"
           id="password"
           type="password"
-          placeholder="Digite seu email"
+          placeholder="Digite sua senha"
           {...register("password")}
         />
         <p>{errors && errors.password?.message}</p>
       </div>
 
       <div>
-        <Button type="submit">Cadastrar</Button>
+        <Button type="submit">Entrar</Button>
       </div>
     </form>
   );

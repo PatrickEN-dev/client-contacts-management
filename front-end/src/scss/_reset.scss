@@ -21,14 +21,9 @@ body,
 html {
   width: 100vw;
   height: 100vh;
+  background-color: gray;
 }
 
-body {
-  color: $color-blue-100;
-  -webkit-font-smoothing: antialiased;
-
-  overflow-x: hidden;
-}
 
 h1,
 h2,

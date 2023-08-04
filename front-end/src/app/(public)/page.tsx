@@ -1,14 +1,13 @@
 "use client";
-import "@/scss/main.scss";
+import RootLayout from "./layout";
+import styles from "./styles.module.scss";
 
 export default function Home() {
   return (
     <>
-      <main>
+      <main className={styles.homepage}>
         <h1>Bem-vindo à nossa breve Home Page!</h1>
-        <p>
-          Esta é uma página simples e agradável criada com Styled Components.
-        </p>
+        <p>Esta é uma página simples e agradável criada com SCSS.</p>
       </main>
     </>
   );
