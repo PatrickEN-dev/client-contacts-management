@@ -29,8 +29,9 @@ export interface IUserListContext {
 }
 
 export type IUserRegister = {
-  id: string;
-  name: string;
+  id?: number;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
   error?: string | undefined;
