@@ -1,21 +1,25 @@
 import { Button } from "@/components/Button";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
-import { UserRequestsContext } from "@/contexts/users/userRequestContext";
 import { IUserRegister } from "@/contexts/users/interfaces";
 import Input from "@/components/Input";
 import styles from "./styles.module.scss";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { userSchema } from "@/schemas/users.schema";
+import { AuthContext } from "@/contexts/users/authContext";
+import { Userdata } from "@/@types/users.types";
 
 export default function RegisterForm() {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<IUserRegister>();
-  const { createUserRequest } = useContext(UserRequestsContext);
+  } = useForm<IUserRegister>({ resolver: zodResolver(userSchema) });
 
-  const submit = (formData: IUserRegister) => {
-    createUserRequest(formData);
+  const { registerUser } = useContext(AuthContext);
+
+  const submit = (formData: Userdata) => {
+    registerUser(formData);
   };
 
   return (

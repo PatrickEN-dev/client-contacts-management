@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
+import Toast from "@/components/Toast";
 
 export default function RootLayout({
   children,
@@ -11,6 +12,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={styles.layout}>
+        <Toast message="" />
         <header>
           <div className={styles.logo}>Client Contact Management</div>
           {!homePage && (
@@ -32,9 +34,6 @@ export default function RootLayout({
           )}
         </header>
         {children}
-        <footer>
-          <p>Client Contact Management</p>
-        </footer>
       </body>
     </html>
   );

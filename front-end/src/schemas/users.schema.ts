@@ -1,14 +1,16 @@
 import { z } from "zod";
 
 export const userSchema = z.object({
-  id: z.string(),
-  first_name: z.string(),
-  last_name: z.string(),
-  email: z.string().email(),
-  password: z.string().min(8),
+  first_name: z.string().nonempty("Campo obrigatório"),
+  last_name: z.string().nonempty("Campo obrigatório"),
+  email: z
+    .string()
+    .email("Deve ser um email válido")
+    .nonempty("Campo obrigatório"),
+  password: z.string().min(8).nonempty("Campo obrigatório"),
 });
 
 export const loginSchema = z.object({
-  email: z.string().email("Deve ser um e-mail"),
+  email: z.string().email("Deve ser um e-mail").nonempty("Campo obrigatório"),
   password: z.string().nonempty("Senha é obrigatória"),
 });

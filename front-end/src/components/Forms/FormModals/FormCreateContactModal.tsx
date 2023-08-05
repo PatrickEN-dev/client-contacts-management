@@ -19,7 +19,7 @@ export default function FormCreateContactModal({
   return (
     <section>
       <div>
-        <h2>Cadastrar tecnologias</h2>
+        <h2>Novo contato</h2>
         <button onClick={closeModal}>X</button>
       </div>
       <form onSubmit={handleSubmit}>
@@ -33,7 +33,7 @@ export default function FormCreateContactModal({
           />
           <p>{errors.title?.message}</p>
         </div>
-        <Button type="submit">Cadastrar tecnologia</Button>
+        <Button type="submit">Cadastrar contato</Button>
       </form>
     </section>
   );

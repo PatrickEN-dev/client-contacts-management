@@ -1,24 +1,24 @@
 import { Button } from "@/components/Button";
 import { useForm } from "react-hook-form";
-import { IUser } from "@/@types/users.types";
+import { LoginData } from "@/@types/users.types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userSchema } from "@/schemas/users.schema";
-import { UserRequestsContext } from "@/contexts/users/userRequestContext";
+import { loginSchema } from "@/schemas/users.schema";
 import { useContext } from "react";
 import Input from "@/components/Input";
 import styles from "./styles.module.scss";
+import { AuthContext } from "@/contexts/users/authContext";
 
 export default function LoginForm() {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<IUser>({ resolver: zodResolver(userSchema) });
+  } = useForm<LoginData>({ resolver: zodResolver(loginSchema) });
 
-  const { loginUserRequest } = useContext(UserRequestsContext);
+  const { loginUser } = useContext(AuthContext);
 
-  const submit = (formData: IUser) => {
-    loginUserRequest(formData);
+  const submit = (formData: LoginData) => {
+    loginUser(formData);
   };
 
   return (

@@ -1,5 +1,4 @@
 "use client";
-import RootLayout from "./layout";
 import styles from "./styles.module.scss";
 
 export default function Home() {

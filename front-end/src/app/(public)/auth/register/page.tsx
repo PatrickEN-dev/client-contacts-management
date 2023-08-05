@@ -1,5 +1,4 @@
 "use client";
-
 import RegisterForm from "@/components/Forms/FormRegister";
 import styles from "./styles.module.scss";
 

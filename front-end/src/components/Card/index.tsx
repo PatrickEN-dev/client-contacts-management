@@ -10,12 +10,10 @@ export default function Card({ user }: ICardProps) {
   return (
     <>
       <li className={styles.cardContent}>
-        <Link href={`/contacts/${user.id}`}>
-          <h3>
-            {user.first_name} {user.last_name}
-          </h3>
-          <p>{user.email}</p>
-        </Link>
+        <h3>
+          {user.first_name} {user.last_name}
+        </h3>
+        <p>{user.email}</p>
       </li>
     </>
   );

@@ -1,19 +1,21 @@
-import React from "react";
+import React, { Dispatch } from "react";
 import { SetStateAction } from "react";
-import { IUser } from "@/@types/users.types";
+import { IUser, LoginData, Userdata } from "@/@types/users.types";
 
 export interface IProviderChildrenProps {
   children: React.ReactNode;
 }
 
-export interface IUserContext {
-  name: string;
-  email: string;
+export interface authProviderData {
+  setToken: Dispatch<SetStateAction<string>>;
+  token: string | undefined;
+  registerUser: (userData: Userdata) => void;
+  loginUser: (loginData: LoginData) => void;
 }
 
 export interface IUserRequestContext {
-  user: IUserLoginResponse | null;
-  setUser: React.Dispatch<SetStateAction<IUserLoginResponse | null>>;
+  user: authProviderData | null;
+  setUser: React.Dispatch<SetStateAction<authProviderData | null>>;
 
   createUserRequest: (data: IUserRegister) => Promise<iAxiosError | void>;
   loginUserRequest: (data: IUserLoginForm) => Promise<iAxiosError | void>;
@@ -42,11 +44,6 @@ export type IUserData = {
   id: string;
   name: string;
   email: string;
-};
-
-export type IUserLoginResponse = {
-  token: string;
-  user: IUserData;
 };
 
 export type IUserLoginForm = {
