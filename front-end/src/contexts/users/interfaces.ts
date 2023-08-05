@@ -14,21 +14,15 @@ export interface authProviderData {
 }
 
 export interface IUserRequestContext {
-  user: authProviderData | null;
-  setUser: React.Dispatch<SetStateAction<authProviderData | null>>;
-
-  createUserRequest: (data: IUserRegister) => Promise<iAxiosError | void>;
-  loginUserRequest: (data: IUserLoginForm) => Promise<iAxiosError | void>;
+  // user: authProviderData | null;
+  // setUser: React.Dispatch<SetStateAction<authProviderData | null>>;
+  getUserById: (userId: number) => Promise<IUser>;
 }
 
 export type iAxiosError = {
   status: string;
   message: string;
 };
-
-export interface IUserListContext {
-  getUserById: (userId: number) => Promise<IUser>;
-}
 
 export type IUserRegister = {
   id?: number;

@@ -1,15 +1,13 @@
 import { API } from "@/services/api";
-import { createContext, useContext } from "react";
-import { IProviderChildrenProps, IUserListContext } from "./interfaces";
+import { createContext } from "react";
+import { IProviderChildrenProps, IUserRequestContext } from "./interfaces";
 import { IUser } from "@/@types/users.types";
 
-export const USerCrudContext = createContext<IUserListContext>(
-  {} as IUserListContext
+export const USerCrudContext = createContext<IUserRequestContext>(
+  {} as IUserRequestContext
 );
 
 export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
-  const token = localStorage.getItem("@TOKEN") || "";
-
   async function getUserById(userId: number) {
     try {
       const response = await API.get<IUser>(`/users/${userId}`);

@@ -1,20 +1,15 @@
 import { ButtonHTMLAttributes } from "react";
 
-interface IButtonProps {
-  children: React.ReactNode;
-  isClicked?: boolean;
-  type?: "button" | "submit" | "reset";
-  onClick?: () => void;
-}
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
 export const Button = ({
   children,
-  isClicked,
   type = "submit",
   onClick,
+  ...rest
 }: IButtonProps) => {
   return (
-    <button isClicked={isClicked} type={type} onClick={onClick}>
+    <button type={type} onClick={onClick} {...rest}>
       {children}
     </button>
   );

@@ -4,9 +4,9 @@ import { LoginData } from "@/@types/users.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schemas/users.schema";
 import { useContext } from "react";
-import Input from "@/components/Input";
 import styles from "./styles.module.scss";
 import { AuthContext } from "@/contexts/users/authContext";
+import Link from "next/link";
 
 export default function LoginForm() {
   const {
@@ -18,26 +18,23 @@ export default function LoginForm() {
   const { loginUser } = useContext(AuthContext);
 
   const submit = (formData: LoginData) => {
+    console.log(formData);
     loginUser(formData);
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submit)}>
       <div>
-        <Input
-          id={"email"}
-          label="Email"
+        <input
           type="mail"
-          placeholder="Digite seu Email"
+          placeholder="Digite seu E-mail"
           {...register("email")}
         />
         <p>{errors && errors.email?.message}</p>
       </div>
 
       <div>
-        <Input
-          label="Senha"
-          id="password"
+        <input
           type="password"
           placeholder="Digite sua senha"
           {...register("password")}
@@ -48,6 +45,8 @@ export default function LoginForm() {
       <div>
         <Button type="submit">Entrar</Button>
       </div>
+
+      <Link href={"/auth/register"}>Não é cadastrado ainda? Clique aqui</Link>
     </form>
   );
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useEffect, useState } from "react";
 import { IContact, IContactContext } from "./interfaces";
 import { IProviderChildrenProps, iAxiosError } from "../users/interfaces";

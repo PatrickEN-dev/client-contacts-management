@@ -1,9 +1,12 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { IProviderChildrenProps, authProviderData } from "./interfaces";
 import { LoginData, Userdata } from "@/@types/users.types";
 import { API } from "@/services/api";
 import { createContext, useState } from "react";
 import { toast } from "react-toastify";
+import { setCookie } from "nookies";
 
 export const AuthContext = createContext<authProviderData>(
   {} as authProviderData
@@ -14,7 +17,10 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
 
   const registerUser = (userData: Userdata) => {
     API.post("/users", userData)
-      .then(() => router.push("/auth/login"))
+      .then(() => {
+        router.push("/login");
+        toast.success("Cadastro realizado com sucesso!");
+      })
       .catch((err) => {
         toast.error("Não foi possível realizar o cadastro"), console.error(err);
       });
@@ -22,7 +28,14 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
 
   const loginUser = (loginData: LoginData) => {
     API.post("/login", loginData)
-      .then(() => router.push("/"))
+      .then((response) => {
+        setCookie(null, "ccm.token", response.data.token, {
+          maxAge: 60 * 30,
+          path: "/",
+        }),
+          toast.success("Login realizado com sucesso!");
+        router.push("/users");
+      })
       .catch((err) => {
         toast.error("Não foi possível realizar o login"), console.error(err);
       });

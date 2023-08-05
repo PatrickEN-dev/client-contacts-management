@@ -13,12 +13,6 @@
       align-items: center;
       justify-content: center;
       padding: 20px 33px;
-      @include fontTemplate(
-        1.8rem,
-        1.3,
-        $fonts-SemiBold,
-        $color-blue900
-      );
       letter-spacing: -0.4px;
     }
 }

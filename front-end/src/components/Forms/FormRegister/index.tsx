@@ -1,33 +1,31 @@
 import { Button } from "@/components/Button";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
-import { IUserRegister } from "@/contexts/users/interfaces";
-import Input from "@/components/Input";
 import styles from "./styles.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/schemas/users.schema";
 import { AuthContext } from "@/contexts/users/authContext";
 import { Userdata } from "@/@types/users.types";
+import Link from "next/link";
 
 export default function RegisterForm() {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<IUserRegister>({ resolver: zodResolver(userSchema) });
+  } = useForm<Userdata>({ resolver: zodResolver(userSchema) });
 
   const { registerUser } = useContext(AuthContext);
 
   const submit = (formData: Userdata) => {
+    console.log(formData);
     registerUser(formData);
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submit)}>
       <div>
-        <Input
-          label={"Primeiro nome"}
-          id="first_name"
+        <input
           type="text"
           placeholder="Digite seu nome"
           {...register("first_name")}
@@ -36,9 +34,7 @@ export default function RegisterForm() {
       </div>
 
       <div>
-        <Input
-          label="Sobrenome"
-          id="last_name"
+        <input
           type="text"
           placeholder="Digite seu sobrenome"
           {...register("last_name")}
@@ -47,22 +43,18 @@ export default function RegisterForm() {
       </div>
 
       <div>
-        <Input
-          label="Email"
-          id="email"
+        <input
           type="mail"
-          placeholder="Digite seu email"
+          placeholder="Digite seu E-mail"
           {...register("email")}
         />
         <p>{errors && errors.email?.message}</p>
       </div>
 
       <div>
-        <Input
-          label="Senha"
-          id="password"
-          type="mail"
-          placeholder="Digite sua senha"
+        <input
+          type="password"
+          placeholder="Sua senha"
           {...register("password")}
         />
         <p>{errors && errors.password?.message}</p>
@@ -71,6 +63,8 @@ export default function RegisterForm() {
       <div>
         <Button type="submit">Cadastrar</Button>
       </div>
+
+      <Link href={"/auth/login"}>Ir para o login</Link>
     </form>
   );
 }
