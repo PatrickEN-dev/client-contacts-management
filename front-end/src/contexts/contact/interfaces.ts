@@ -1,25 +1,25 @@
-import { iAxiosError } from "../users/interfaces";
+import { ContactData, ContactDataRequest } from "@/@types/contacts.types";
 
 export type IContact = {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
-  telehone: string;
-  error?: string | undefined;
-  axiosError: iAxiosError;
+  telephone: string;
 };
 
 export interface IContactContext {
   showModal: string;
   setShowModal: React.Dispatch<React.SetStateAction<string>>;
-  contacts: IContact[];
-  setContacts: React.Dispatch<React.SetStateAction<IContact[]>>;
   closeModal: () => void;
 
-  createContactRequest: (
-    data: IContact
-  ) => Promise<IContact | iAxiosError | void>;
-  updateContactRequest: (data: IContact, id: number) => Promise<void>;
-  deleteContactRequest: (id: number) => Promise<void>;
+  contacts: ContactData[];
+  setContacts: React.Dispatch<React.SetStateAction<ContactData[]>>;
+
+  contactInfo: ContactDataRequest;
+  setContactInfo: React.Dispatch<React.SetStateAction<ContactDataRequest>>;
+
+  createContactRequest: () => void;
+  updateContactRequest: (data: ContactData, id: number) => void;
+  deleteContactRequest: (id: number) => void;
 }
