@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
           path: "/",
         }),
           toast.success("Login realizado com sucesso!");
-        router.push("/users");
+        router.push("/contacts");
       })
       .catch((err) => {
         toast.error("Não foi possível realizar o login"), console.error(err);

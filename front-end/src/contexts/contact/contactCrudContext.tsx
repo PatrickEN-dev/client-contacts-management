@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useEffect, useState } from "react";
 import { IProviderChildrenProps } from "../users/interfaces";
 import { API } from "@/services/api";
@@ -31,20 +33,21 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
     setShowModal("");
   };
 
-  useEffect(() => {
-    function getContacts() {
-      API.get<ContactData[]>("/contacts")
-        .then((response) => {
-          const contacts: ContactData[] = response.data;
-          setContacts(contacts);
-        })
-        .catch((error) => {
-          console.error(error);
-          throw new Error("Contatos não encontrados");
-        });
-    }
-    getContacts();
-  }, []);
+  // useEffect(() => {
+  //   function getContacts() {
+  //     API.get<ContactData[]>("/contacts")
+  //       .then((response) => {
+  //         console.log("RESPONSE -> ", response);
+  //         const contacts: ContactData[] = response.data;
+  //         setContacts(contacts);
+  //       })
+  //       .catch((error) => {
+  //         console.error(error);
+  //         throw new Error("Contatos não encontrados");
+  //       });
+  //   }
+  //   getContacts();
+  // }, []);
 
   const createContactRequest = () => {
     API.post<ContactData>("/contacts", contactInfo)
