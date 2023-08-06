@@ -1,4 +1,4 @@
-import { ContactData } from "@/@types/contacts.types";
+import { ContactData, ContactDataRequest } from "@/@types/contacts.types";
 import { Button } from "@/components/Button";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 import { contactsSchema } from "@/schemas/contacts.schema";
@@ -6,23 +6,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 
-export default function FormCreateContactModal() {
+type FormUpdateContactProps = {
+  id: number;
+};
+
+export default function FormUpdateContactModal({ id }: FormUpdateContactProps) {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<ContactData>({ resolver: zodResolver(contactsSchema) });
 
-  const { createContactRequest, closeModal } = useContext(UserContactsContext);
+  const { updateContactRequest, closeModal } = useContext(UserContactsContext);
 
-  const submit = () => {
-    createContactRequest();
+  const submit = (formData: ContactData) => {
+    updateContactRequest(formData, id);
   };
-
   return (
     <section>
       <div>
-        <h2>Novo contato</h2>
+        <h2>Atualizar contato</h2>
         <button onClick={closeModal}>X</button>
       </div>
       <form onSubmit={handleSubmit(submit)}>
@@ -61,7 +64,7 @@ export default function FormCreateContactModal() {
           />
           <p>{errors.telephone?.message}</p>
         </div>
-        <Button type="submit">Criar</Button>
+        <Button type="submit">Atualizar</Button>
       </form>
     </section>
   );

@@ -1,29 +1,27 @@
-import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
 import FormCreateContactModal from "../Forms/FormModals/FormCreateContactModal";
+import FormDeleteContactModal from "../Forms/FormModals/FormDeleteContact";
+import FormUpdateContactModal from "../Forms/FormModals/FormUpdateContact";
 
-export const ModalCreateTech = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const { createContactRequest, closeModal } = useContext(UserContactsContext);
-
-  const onSubmit = (formData: any) => {
-    createContactRequest(formData);
-  };
-
+export const ModalCreateContact = () => {
   return (
     <dialog open={true}>
-      <FormCreateContactModal
-        register={register}
-        handleSubmit={handleSubmit(onSubmit)}
-        errors={errors}
-        closeModal={closeModal}
-      />
+      <FormCreateContactModal />
+    </dialog>
+  );
+};
+
+export const ModalUpdateContact = () => {
+  return (
+    <dialog open={true}>
+      <FormUpdateContactModal id={0} />
+    </dialog>
+  );
+};
+
+export const ModalDeleteContact = () => {
+  return (
+    <dialog open={true}>
+      <FormDeleteContactModal id={0} />
     </dialog>
   );
 };

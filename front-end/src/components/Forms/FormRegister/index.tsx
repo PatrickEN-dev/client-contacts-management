@@ -18,7 +18,6 @@ export default function RegisterForm() {
   const { registerUser } = useContext(AuthContext);
 
   const submit = (formData: Userdata) => {
-    console.log(formData);
     registerUser(formData);
   };
 
