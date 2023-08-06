@@ -10,13 +10,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className={styles.layout}>
         <UsercontactsProvider>
           <ToastProvider>
             <header>
               <nav>
                 <li>
                   <Link href={"/"}>Home</Link>
+                </li>
+                <li>
+                  <Link href={`/contacts`}>Perfil</Link>
                 </li>
               </nav>
             </header>

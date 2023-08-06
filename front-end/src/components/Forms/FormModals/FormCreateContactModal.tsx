@@ -5,6 +5,7 @@ import { contactsSchema } from "@/schemas/contacts.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import styles from "./styles.module.scss";
 
 export default function FormCreateContactModal() {
   const {
@@ -15,15 +16,18 @@ export default function FormCreateContactModal() {
 
   const { createContactRequest, closeModal } = useContext(UserContactsContext);
 
-  const submit = () => {
-    createContactRequest();
+  const submit = (formData: ContactData) => {
+    console.log(formData);
+    createContactRequest(formData);
   };
 
   return (
-    <section>
+    <section className={styles.modalContainer}>
       <div>
         <h2>Novo contato</h2>
-        <button onClick={closeModal}>X</button>
+        <button className={styles.buttonClose} onClick={closeModal}>
+          X
+        </button>
       </div>
       <form onSubmit={handleSubmit(submit)}>
         <div>

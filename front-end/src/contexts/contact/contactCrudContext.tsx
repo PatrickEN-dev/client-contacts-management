@@ -33,24 +33,18 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
     setShowModal("");
   };
 
-  // useEffect(() => {
-  //   function getContacts() {
-  //     API.get<ContactData[]>("/contacts")
-  //       .then((response) => {
-  //         console.log("RESPONSE -> ", response);
-  //         const contacts: ContactData[] = response.data;
-  //         setContacts(contacts);
-  //       })
-  //       .catch((error) => {
-  //         console.error(error);
-  //         throw new Error("Contatos não encontrados");
-  //       });
-  //   }
-  //   getContacts();
-  // }, []);
+  const createContactRequest = (formData: ContactData) => {
+    const cookies = parseCookies();
+    const userId = cookies["ccm.userId"];
 
-  const createContactRequest = () => {
-    API.post<ContactData>("/contacts", contactInfo)
+    if (!userId) {
+      console.error("ID do usuário não encontrado nos cookies.");
+      return;
+    }
+
+    formData.id = Number(userId);
+
+    API.post<ContactData>(`/contacts`, formData)
       .then((res) => {
         toast.success("Contato criado com sucesso!");
         const createdContact = res.data;

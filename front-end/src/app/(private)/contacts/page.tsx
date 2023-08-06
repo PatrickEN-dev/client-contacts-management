@@ -6,22 +6,30 @@ import { ContactData } from "@/@types/contacts.types";
 import { GetServerSideProps } from "next";
 import { API } from "@/services/api";
 import { Button } from "@/components/Button";
+import { useContext } from "react";
+import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
+import { ModalCreateContact } from "@/components/Modal";
 
 interface HomeProps {
   contacts: ContactData[];
 }
 
 export default function UserPage({ contacts }: HomeProps) {
+  const { showModal, setShowModal } = useContext(UserContactsContext);
+  const handleCreateModalOpen = () => {
+    setShowModal("createContactModal");
+  };
   return (
     <>
       <main className={styles.userPage}>
         <h1>Página Principal usuário logado</h1>
-        <Button
-          type="button"
-          onClick={() =>
-            "Aqui abrirá um modal de criar contato que eu preciso fazer"
-          }
-        />
+
+        {showModal === "createContactModal" && <ModalCreateContact />}
+
+        <Button type="button" onClick={() => handleCreateModalOpen()}>
+          Criar contato
+        </Button>
+
         {contacts?.length === 0 ? (
           <p>O usuário não possui contatos cadastrados.</p>
         ) : (
