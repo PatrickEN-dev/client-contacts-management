@@ -1,9 +1,9 @@
 "use client";
 
 import { API } from "@/services/api";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { IProviderChildrenProps, IUserRequestContext } from "./interfaces";
-import { IUser } from "@/@types/users.types";
+import { IUser, Userdata } from "@/@types/users.types";
 import { parseCookies } from "nookies";
 import { AuthContext } from "./authContext";
 
@@ -14,19 +14,22 @@ export const USerCrudContext = createContext<IUserRequestContext>(
 export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
   const { token } = useContext(AuthContext);
   const cookies = parseCookies();
+  const [userData, setUserData] = useState<Userdata | null>(null);
 
   if (cookies["ccm.token"]) {
     API.defaults.headers.common.authorization = `Bearer ${cookies["ccm.token"]}`;
   }
 
-  async function getUserById(userId: number) {
-    try {
-      const response = await API.get<IUser>(`/users/${userId}`);
-      return response.data;
-    } catch (error) {
-      console.error(error);
-      throw new Error("usuário não encontrados");
-    }
+  function getUserById(userId: number) {
+    return API.get<Userdata>(`/users/${userId}`)
+      .then((response) => {
+        const userInfo: Userdata = response.data;
+        return userInfo;
+      })
+      .catch((error) => {
+        console.error(error);
+        throw new Error("Usuário não encontrado");
+      });
   }
 
   // const updateUserRequest = async (data: IUser, id: number) => {

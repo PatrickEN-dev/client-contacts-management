@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, forwardRef, InputHTMLAttributes } from "react";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
@@ -28,5 +30,5 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
-
+Input.displayName = "Input";
 export default Input;

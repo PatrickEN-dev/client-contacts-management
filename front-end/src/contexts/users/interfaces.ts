@@ -16,7 +16,7 @@ export interface authProviderData {
 export interface IUserRequestContext {
   // user: authProviderData | null;
   // setUser: React.Dispatch<SetStateAction<authProviderData | null>>;
-  getUserById: (userId: number) => Promise<IUser>;
+  getUserById: (userId: number) => Promise<Userdata>;
 }
 
 export type iAxiosError = {
