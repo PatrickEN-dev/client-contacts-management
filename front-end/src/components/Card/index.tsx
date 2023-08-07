@@ -1,10 +1,12 @@
+"use client";
+
 import styles from "./styles.module.scss";
-import { IContact } from "@/contexts/contact/interfaces";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import { ModalDeleteContact, ModalUpdateContact } from "../Modal";
+import { ContactData } from "@/@types/contacts.types";
 
 interface ICardProps {
-  user: IContact;
+  user: ContactData;
 }
 
 export default function Card({ user }: ICardProps) {
