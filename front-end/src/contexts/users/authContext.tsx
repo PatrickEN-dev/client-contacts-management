@@ -30,10 +30,14 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
     API.post("/login", loginData)
       .then((response) => {
         setCookie(null, "ccm.token", response.data.token, {
-          maxAge: 60 * 30,
+          maxAge: 60 * 40,
           path: "/",
         }),
-          toast.success("Login realizado com sucesso!");
+          setCookie(null, "ccm.userId", response.data.userId, {
+            maxAge: 60 * 400000,
+            path: "/",
+          });
+        toast.success("Login realizado com sucesso!");
         router.push("/contacts");
       })
       .catch((err) => {

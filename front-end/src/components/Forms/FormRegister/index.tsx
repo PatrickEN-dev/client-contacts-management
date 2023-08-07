@@ -63,7 +63,7 @@ export default function RegisterForm() {
         <Button type="submit">Cadastrar</Button>
       </div>
 
-      <Link href={"/auth/login"}>Ir para o login</Link>
+      <Link href={"/login"}>Ir para o login</Link>
     </form>
   );
 }

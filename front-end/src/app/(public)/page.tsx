@@ -6,7 +6,7 @@ export default function Home() {
     <>
       <main className={styles.homepage}>
         <h1>Bem-vindo à nossa breve Home Page!</h1>
-        <p>Esta é uma página simples e agradável criada com SCSS.</p>
+        <p>Seu gerenciador de contatos pessoal</p>
       </main>
     </>
   );

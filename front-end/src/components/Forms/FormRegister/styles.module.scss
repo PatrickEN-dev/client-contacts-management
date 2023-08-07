@@ -6,7 +6,9 @@
   align-items: center;
   max-width: 400px;
   margin: 0 auto;
-
+  background-color: #ffffff;
+  padding: 3rem;
+  border-radius: 1rem;
   div {
     display: flex;
     flex-direction: column;
@@ -31,7 +33,7 @@
     color: #4a90e2;
 
     &::placeholder {
-      color: #4a90e2;
+      color: #000000;
       opacity: 0.6;
     }
   }
@@ -65,5 +67,9 @@
     &:hover {
       background-color: #3cd1c2;
     }
+  }
+  a {
+    font-size: 1.2rem;
+   margin-top: 2rem;
   }
 }

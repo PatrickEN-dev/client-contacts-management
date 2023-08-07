@@ -14,8 +14,8 @@ interface HomeProps {
   contacts: ContactData[];
 }
 
-export default function UserPage({ contacts }: HomeProps) {
-  const { showModal, setShowModal } = useContext(UserContactsContext);
+export default function UserPage() {
+  const { showModal, setShowModal, contacts } = useContext(UserContactsContext);
   const handleCreateModalOpen = () => {
     setShowModal("createContactModal");
   };

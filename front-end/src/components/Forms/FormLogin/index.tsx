@@ -46,7 +46,7 @@ export default function LoginForm() {
         <Button type="submit">Entrar</Button>
       </div>
 
-      <Link href={"/auth/register"}>Não é cadastrado ainda? Clique aqui</Link>
+      <Link href={"/register"}>Não é cadastrado ainda? Clique aqui</Link>
     </form>
   );
 }

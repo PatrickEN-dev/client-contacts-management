@@ -10,6 +10,7 @@
   h1 {
     font-size: 36px;
     color: #4a90e2;
+    font-family: "Poppins", sans-serif; 
   }
 
   button {
@@ -142,4 +143,18 @@
       margin-top: 20px;
     }
   }
+}
+
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #1a1a1a;
+}
+
+.loadingText {
+  font-size: 24px;
+  color: #ffffff;
 }

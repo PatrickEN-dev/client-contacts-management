@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { IProviderChildrenProps } from "../users/interfaces";
 import { API } from "@/services/api";
 import { toast } from "react-toastify";
@@ -35,7 +35,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
 
   const createContactRequest = (formData: ContactData) => {
     const cookies = parseCookies();
-    const userId = cookies["ccm.userId"];
+    const userId = cookies["ccm.token"];
 
     if (!userId) {
       console.error("ID do usuário não encontrado nos cookies.");

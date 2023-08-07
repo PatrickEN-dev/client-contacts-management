@@ -1,7 +1,7 @@
 import { ContactData } from "@/@types/contacts.types";
 import { Button } from "@/components/Button";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
-import { contactsSchema } from "@/schemas/contacts.schema";
+import { contactSchemaRequest } from "@/schemas/contacts.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
@@ -12,12 +12,11 @@ export default function FormCreateContactModal() {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<ContactData>({ resolver: zodResolver(contactsSchema) });
+  } = useForm<ContactData>({ resolver: zodResolver(contactSchemaRequest) });
 
   const { createContactRequest, closeModal } = useContext(UserContactsContext);
 
   const submit = (formData: ContactData) => {
-    console.log(formData);
     createContactRequest(formData);
   };
 
