@@ -3,8 +3,6 @@
 import Card from "@/components/Card";
 import styles from "./styles.module.scss";
 import { ContactData } from "@/@types/contacts.types";
-import { GetServerSideProps } from "next";
-import { API } from "@/services/api";
 import { Button } from "@/components/Button";
 import { useContext } from "react";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
@@ -43,11 +41,3 @@ export default function UserPage() {
     </>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  const response = await API.get<ContactData[]>("/contacts");
-
-  return {
-    props: { contacts: response.data },
-  };
-};

@@ -1,13 +1,24 @@
+"use client";
+
 import { API } from "@/services/api";
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { IProviderChildrenProps, IUserRequestContext } from "./interfaces";
 import { IUser } from "@/@types/users.types";
+import { parseCookies } from "nookies";
+import { AuthContext } from "./authContext";
 
 export const USerCrudContext = createContext<IUserRequestContext>(
   {} as IUserRequestContext
 );
 
 export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
+  const { token } = useContext(AuthContext);
+  const cookies = parseCookies();
+
+  if (cookies["ccm.token"]) {
+    API.defaults.headers.common.authorization = `Bearer ${cookies["ccm.token"]}`;
+  }
+
   async function getUserById(userId: number) {
     try {
       const response = await API.get<IUser>(`/users/${userId}`);
@@ -52,7 +63,7 @@ export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
   //     console.error(error);
   //     toast.error("Não foi póssível deletar seu perfil");
   //   }
-  // };
+  // }
 
   return (
     <USerCrudContext.Provider value={{ getUserById }}>
