@@ -1,9 +1,9 @@
 "use client";
 
 import { API } from "@/services/api";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { IProviderChildrenProps, IUserRequestContext } from "./interfaces";
-import { IUser, Userdata } from "@/@types/users.types";
+import { Userdata } from "@/@types/users.types";
 import { parseCookies } from "nookies";
 import { AuthContext } from "./authContext";
 
