@@ -33,22 +33,32 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
     setShowModal("");
   };
 
-  const createContactRequest = (formData: ContactData) => {
-    const cookies = parseCookies();
-    const userId = cookies["ccm.token"];
-
-    if (!userId) {
-      console.error("ID do usuário não encontrado nos cookies.");
-      return;
-    }
-
-    formData.id = Number(userId);
-
-    API.post<ContactData>(`/contacts`, formData)
+  const getAllContactsRequest = () => {
+    API.get(`/contacts`)
       .then((res) => {
+        setContacts([...contacts, res.data]);
+        closeModal();
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error("Não foi possível deletar seu contato");
+      });
+  };
+
+  const createContactRequest = async (formData: ContactData) => {
+    console.log("FORMDATA", formData);
+    API.post<ContactData>(`/contacts`, formData, {
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((res) => {
+        console.log("RESPONSE CREATE CONTACT", res);
+        getAllContactsRequest();
+      })
+      .then(() => {
         toast.success("Contato criado com sucesso!");
-        const createdContact = res.data;
-        setContacts([...contacts, createdContact]);
+        console.log("CONTACTS", contacts);
         closeModal();
       })
       .catch((err) => {

@@ -10,6 +10,7 @@ interface ICardProps {
 }
 
 export default function Card({ user }: ICardProps) {
+  console.log("USER ID NO CARD", user.id);
   const handleEditClick = () => {
     ModalUpdateContact();
   };

@@ -14,30 +14,27 @@ interface HomeProps {
 
 export default function UserPage() {
   const { showModal, setShowModal, contacts } = useContext(UserContactsContext);
-  const handleCreateModalOpen = () => {
-    setShowModal("createContactModal");
-  };
+  const handleCreateModalOpen = () => setShowModal("createContactModal");
+
   return (
-    <>
-      <main className={styles.userPage}>
-        <h1>Página Principal usuário logado</h1>
+    <main className={styles.userPage}>
+      <h1>Página Principal usuário logado</h1>
 
-        {showModal === "createContactModal" && <ModalCreateContact />}
+      {showModal === "createContactModal" && <ModalCreateContact />}
 
-        <Button type="button" onClick={() => handleCreateModalOpen()}>
-          Criar contato
-        </Button>
+      <Button type="button" onClick={() => handleCreateModalOpen()}>
+        Criar contato
+      </Button>
 
-        {contacts?.length === 0 ? (
-          <p>O usuário não possui contatos cadastrados.</p>
-        ) : (
-          <ul>
-            {contacts?.map((contact: ContactData) => (
-              <Card key={contact.id} user={contact} />
-            ))}
-          </ul>
-        )}
-      </main>
-    </>
+      {contacts?.length === 0 ? (
+        <p>O usuário não possui contatos cadastrados.</p>
+      ) : (
+        <ul>
+          {contacts?.map((contact: ContactData) => (
+            <Card key={contact.id} user={contact} />
+          ))}
+        </ul>
+      )}
+    </main>
   );
 }

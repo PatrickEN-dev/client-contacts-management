@@ -12,19 +12,19 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={styles.layout}>
         <UsercontactsProvider>
-          <ToastProvider>
-            <header>
-              <nav>
-                <li>
-                  <Link href={"/"}>Home</Link>
-                </li>
-                <li>
-                  <Link href={`/contacts`}>Perfil</Link>
-                </li>
-              </nav>
-            </header>
-            {children}
-          </ToastProvider>
+          {/* <ToastProvider> */}
+          <header>
+            <nav>
+              <li>
+                <Link href={"/"}>Home</Link>
+              </li>
+              <li>
+                <Link href={`/contacts`}>Perfil</Link>
+              </li>
+            </nav>
+          </header>
+          {children}
+          {/* </ToastProvider> */}
         </UsercontactsProvider>
       </body>
     </html>

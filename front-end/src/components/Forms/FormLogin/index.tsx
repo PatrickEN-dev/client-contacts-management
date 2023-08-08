@@ -18,7 +18,6 @@ export default function LoginForm() {
   const { loginUser } = useContext(AuthContext);
 
   const submit = (formData: LoginData) => {
-    console.log(formData);
     loginUser(formData);
   };
 

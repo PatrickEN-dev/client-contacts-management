@@ -23,6 +23,7 @@ export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
   function getUserById(userId: number) {
     return API.get<Userdata>(`/users/${userId}`)
       .then((response) => {
+        console.log("GETUSERBYID", response.data);
         const userInfo: Userdata = response.data;
         return userInfo;
       })

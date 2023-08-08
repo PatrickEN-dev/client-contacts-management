@@ -33,11 +33,7 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
           maxAge: 60 * 40,
           path: "/",
         }),
-          setCookie(null, "ccm.userId", response.data.userId, {
-            maxAge: 60 * 400000,
-            path: "/",
-          });
-        toast.success("Login realizado com sucesso!");
+          toast.success("Login realizado com sucesso!");
         router.push("/contacts");
       })
       .catch((err) => {

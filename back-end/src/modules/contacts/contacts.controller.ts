@@ -9,14 +9,13 @@ import {
   UseGuards,
   Request,
   ParseIntPipe,
-  UseInterceptors,
+  Res,
 } from '@nestjs/common';
 import { ContactsService } from './contacts.service';
 import { CreateContactDto } from './dto/create-contact.dto';
 import { UpdateContactDto } from './dto/update-contact.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt/jwt.auth.guard';
-import { FileFieldsInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('contacts')
 @Controller('contacts')
@@ -26,8 +25,12 @@ export class ContactsController {
   @Post()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  create(@Body() data: CreateContactDto, @Request() req) {
-    return this.contactsService.create(data, Number(req.user.id));
+  async create(@Body() data: CreateContactDto, @Request() req, @Res() res) {
+    const contact = await this.contactsService.create(
+      data,
+      Number(req.user.id),
+    );
+    return res.status(201).json(contact);
   }
 
   @Get()
