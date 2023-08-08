@@ -72,12 +72,7 @@ yarn start:dev
 ou, se estiver usando NPM
 npm run start:dev
 
-
 O backend estará disponível em: [http://localhost:3001](http://localhost:3001).
-
-## Outras Informações
-
-- Descreva qualquer outra informação relevante sobre o projeto aqui.
 
 ## Contato
 
@@ -85,11 +80,4 @@ Se você tiver alguma dúvida, sugestão ou problema relacionado ao projeto, sin
 
 Nome: Patrick
 Email: patrickandreia2505@gmail.com
-
-## Contribuição
-
-Se você quiser contribuir para este projeto, fique à vontade para abrir um Pull Request ou criar uma Issue.
-
 ---
-
-
