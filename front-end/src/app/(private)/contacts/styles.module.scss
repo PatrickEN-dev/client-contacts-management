@@ -24,10 +24,14 @@
 
   ul {
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
-    padding: 0;
+    gap: 20px;
+
 
     li {
+      min-width: 16rem;
+      background-color: rgb(245, 245, 245);
       margin: 10px 0;
 
       a {

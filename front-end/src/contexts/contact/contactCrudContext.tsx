@@ -54,9 +54,6 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
       },
     })
       .then(() => {
-        getAllContactsRequest();
-      })
-      .then(() => {
         toast.success("Contato criado com sucesso!");
         closeModal();
       })
@@ -74,6 +71,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
           Number(contact.id) === id ? { ...contact, ...data } : contact
         );
         setContacts(updatedContact);
+        localStorage.setItem("contacts", JSON.stringify(updatedContact));
         closeModal();
       })
       .catch((error) => {
@@ -90,6 +88,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
           (contact) => Number(contact.id) !== id
         );
         setContacts(deletedContact);
+        localStorage.setItem("contacts", JSON.stringify(deletedContact));
         closeModal();
       })
       .catch((error) => {
@@ -108,6 +107,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
         closeModal,
         contactInfo,
         setContactInfo,
+        getAllContactsRequest,
         createContactRequest,
         updateContactRequest,
         deleteContactRequest,

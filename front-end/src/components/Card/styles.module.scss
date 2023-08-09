@@ -1,19 +1,25 @@
 .cardContent {
+  padding: 1rem;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px gray;
+  border: 0;
+
+  .cardHeader {
     display: flex;
-    padding: 1rem;
-    flex-direction: column;
-    background-color: white;
-    height: auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0px 0px 20px gray;
-    border: 0;
-    .Title {
-      flex-grow: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 33px;
-      letter-spacing: -0.4px;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif; 
+
+  .icons {
+    display: flex;
+    justify-content: space-around;
+    width:3rem;
     }
+  }
+
+  p {
+    
+    font-size: 1.1rem;
+  }
 }

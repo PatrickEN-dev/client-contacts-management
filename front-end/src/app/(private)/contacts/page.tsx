@@ -2,19 +2,12 @@
 
 import Card from "@/components/Card";
 import styles from "./styles.module.scss";
-import { ContactData, ContactDataRequest } from "@/@types/contacts.types";
+import { ContactData } from "@/@types/contacts.types";
 import { Button } from "@/components/Button";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
-import {
-  ModalCreateContact,
-  ModalDeleteContact,
-  ModalUpdateContact,
-} from "@/components/Modal";
-
-interface HomeProps {
-  contacts: ContactData[];
-}
+import { ModalCreateContact, ModalDeleteContact } from "@/components/Modal";
+import { USerCrudContext } from "@/contexts/users/userCrudContext";
 
 export default function UserPage() {
   const {
@@ -24,7 +17,9 @@ export default function UserPage() {
     setContacts,
     setContactInfo,
     contactInfo,
+    getAllContactsRequest,
   } = useContext(UserContactsContext);
+  const {} = useContext(USerCrudContext);
 
   const handleCreateModalOpen = () => {
     setShowModal("createContactModal");
@@ -38,10 +33,9 @@ export default function UserPage() {
   };
 
   useEffect(() => {
+    getAllContactsRequest();
     const storedContacts = localStorage.getItem("contacts");
-    if (storedContacts) {
-      setContacts(JSON.parse(storedContacts));
-    }
+    if (storedContacts) setContacts(JSON.parse(storedContacts));
   }, []);
 
   return (
@@ -54,7 +48,7 @@ export default function UserPage() {
         <ModalDeleteContact id={contactInfo.id} />
       )}
 
-      <Button type="button" onClick={() => handleCreateModalOpen()}>
+      <Button type="button" onClick={() => handleCreateModalOpen}>
         Criar contato
       </Button>
 
