@@ -1,4 +1,4 @@
-import { ContactData } from "@/@types/contacts.types";
+import { ContactDataRequest } from "@/@types/contacts.types";
 import { Button } from "@/components/Button";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 import { contactSchemaRequest } from "@/schemas/contacts.schema";
@@ -12,11 +12,13 @@ export default function FormCreateContactModal() {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<ContactData>({ resolver: zodResolver(contactSchemaRequest) });
+  } = useForm<ContactDataRequest>({
+    resolver: zodResolver(contactSchemaRequest),
+  });
 
   const { createContactRequest, closeModal } = useContext(UserContactsContext);
 
-  const submit = (formData: ContactData) => {
+  const submit = (formData: ContactDataRequest) => {
     createContactRequest(formData);
   };
 

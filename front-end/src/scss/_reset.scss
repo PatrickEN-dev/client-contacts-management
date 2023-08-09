@@ -20,8 +20,6 @@
 
 body,
 html {
-  width: 100vw;
-  height: 100vh;
   background-color: gray;
   list-style: none;
 }
@@ -42,8 +40,6 @@ button {
 }
 
 .container {
-    max-width: 1140px;
     display: flex;
-    margin: 0 auto;
     overflow: hidden;
 }

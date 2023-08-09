@@ -19,7 +19,7 @@ export interface IContactContext {
   contactInfo: ContactDataRequest;
   setContactInfo: React.Dispatch<React.SetStateAction<ContactDataRequest>>;
 
-  createContactRequest: (formData: ContactData) => void;
+  createContactRequest: (formData: ContactDataRequest) => void;
   updateContactRequest: (data: ContactData, id: number) => void;
   deleteContactRequest: (id: number) => void;
 }

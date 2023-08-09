@@ -52,6 +52,15 @@ export default function RegisterForm() {
 
       <div>
         <input
+          type="tel"
+          placeholder="Sua telefone"
+          {...register("telephone")}
+        />
+        <p>{errors && errors.telephone?.message}</p>
+      </div>
+
+      <div>
+        <input
           type="password"
           placeholder="Sua senha"
           {...register("password")}

@@ -36,7 +36,9 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
   const getAllContactsRequest = () => {
     API.get(`/contacts`)
       .then((res) => {
-        setContacts([...contacts, res.data]);
+        const contactData = res.data;
+        setContacts(contactData);
+        localStorage.setItem("contacts", JSON.stringify(contactData));
         closeModal();
       })
       .catch((error) => {
@@ -45,7 +47,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
       });
   };
 
-  const createContactRequest = async (formData: ContactData) => {
+  const createContactRequest = async (formData: ContactDataRequest) => {
     console.log("FORMDATA", formData);
     API.post<ContactData>(`/contacts`, formData, {
       headers: {

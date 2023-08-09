@@ -7,6 +7,7 @@ export const userSchema = z.object({
     .string()
     .email("Deve ser um email válido")
     .nonempty("Campo obrigatório"),
+  telephone: z.string(),
   password: z.string().min(8).nonempty("Campo obrigatório"),
 });
 

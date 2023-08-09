@@ -6,11 +6,11 @@ import { ModalDeleteContact, ModalUpdateContact } from "../Modal";
 import { ContactData } from "@/@types/contacts.types";
 
 interface ICardProps {
-  user: ContactData;
+  contact: ContactData;
 }
 
-export default function Card({ user }: ICardProps) {
-  console.log("USER ID NO CARD", user.id);
+export default function Card({ contact }: ICardProps) {
+  console.log("USER ID NO CARD", contact.id);
   const handleEditClick = () => {
     ModalUpdateContact();
   };
@@ -24,7 +24,7 @@ export default function Card({ user }: ICardProps) {
       <li className={styles.cardContent}>
         <div className={styles.cardHeader}>
           <h3>
-            {user.first_name} {user.last_name}
+            {contact.first_name} {contact.last_name}
           </h3>
           <div className={styles.icons}>
             <FaPencilAlt
@@ -37,7 +37,7 @@ export default function Card({ user }: ICardProps) {
             />
           </div>
         </div>
-        <p>{user.email}</p>
+        <p>{contact.email}</p>
       </li>
     </>
   );

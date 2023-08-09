@@ -4,7 +4,7 @@ import Card from "@/components/Card";
 import styles from "./styles.module.scss";
 import { ContactData } from "@/@types/contacts.types";
 import { Button } from "@/components/Button";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 import { ModalCreateContact } from "@/components/Modal";
 
@@ -13,8 +13,16 @@ interface HomeProps {
 }
 
 export default function UserPage() {
-  const { showModal, setShowModal, contacts } = useContext(UserContactsContext);
+  const { showModal, setShowModal, contacts, setContacts } =
+    useContext(UserContactsContext);
   const handleCreateModalOpen = () => setShowModal("createContactModal");
+
+  useEffect(() => {
+    const storedContacts = localStorage.getItem("contacts");
+    if (storedContacts) {
+      setContacts(JSON.parse(storedContacts));
+    }
+  }, []);
 
   return (
     <main className={styles.userPage}>
@@ -30,9 +38,12 @@ export default function UserPage() {
         <p>O usuário não possui contatos cadastrados.</p>
       ) : (
         <ul>
-          {contacts?.map((contact: ContactData) => (
-            <Card key={contact.id} user={contact} />
-          ))}
+          {contacts?.map(
+            (contact: ContactData) => (
+              console.log("CONTACT ID NA USERPAGE", contact),
+              (<Card key={contact.id} contact={contact} />)
+            )
+          )}
         </ul>
       )}
     </main>
