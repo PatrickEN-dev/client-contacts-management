@@ -1,4 +1,8 @@
-import { ContactData, ContactDataRequest } from "@/@types/contacts.types";
+import {
+  ContactData,
+  ContactDataRequest,
+  ContactUpdateData,
+} from "@/@types/contacts.types";
 
 export type IContact = {
   id: number;
@@ -16,10 +20,10 @@ export interface IContactContext {
   contacts: ContactData[];
   setContacts: React.Dispatch<React.SetStateAction<ContactData[]>>;
 
-  contactInfo: ContactDataRequest;
-  setContactInfo: React.Dispatch<React.SetStateAction<ContactDataRequest>>;
+  contactInfo: ContactData;
+  setContactInfo: React.Dispatch<React.SetStateAction<ContactData>>;
 
   createContactRequest: (formData: ContactDataRequest) => void;
-  updateContactRequest: (data: ContactData, id: number) => void;
+  updateContactRequest: (data: ContactUpdateData, id: number) => void;
   deleteContactRequest: (id: number) => void;
 }

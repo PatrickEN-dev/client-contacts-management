@@ -9,3 +9,4 @@ export const contactsSchema = z.object({
 });
 
 export const contactSchemaRequest = contactsSchema.omit({ id: true });
+export const contactUpdateSchema = contactSchemaRequest.partial();

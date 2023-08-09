@@ -1,11 +1,12 @@
-import { ContactData } from "@/@types/contacts.types";
+import { ContactUpdateData } from "@/@types/contacts.types";
 import { Button } from "@/components/Button";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
-import { contactSchemaRequest } from "@/schemas/contacts.schema";
+import { contactUpdateSchema } from "@/schemas/contacts.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./styles.module.scss";
+
 type FormUpdateContactProps = {
   id: number;
 };
@@ -15,11 +16,13 @@ export default function FormUpdateContactModal({ id }: FormUpdateContactProps) {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<ContactData>({ resolver: zodResolver(contactSchemaRequest) });
+  } = useForm<ContactUpdateData>({
+    resolver: zodResolver(contactUpdateSchema),
+  });
 
   const { updateContactRequest, closeModal } = useContext(UserContactsContext);
 
-  const submit = (formData: ContactData) => {
+  const submit = (formData: ContactUpdateData) => {
     updateContactRequest(formData, id);
   };
   return (

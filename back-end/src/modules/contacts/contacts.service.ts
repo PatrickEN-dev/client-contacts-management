@@ -22,20 +22,20 @@ export class ContactsService {
   }
 
   async findOne(id: number) {
-    const findContact = await this.ContactRepository.findone(id);
+    const findContact = await this.ContactRepository.findOne(id);
     if (!findContact) throw new NotFoundException('Contact not found');
 
     return findContact;
   }
 
   async update(id: number, updateContactDto: UpdateContactDto) {
-    const findContact = await this.ContactRepository.findone(id);
+    const findContact = await this.ContactRepository.findOne(id);
     if (!findContact) throw new NotFoundException('Contact not found');
     return this.ContactRepository.update(id, updateContactDto);
   }
 
   async remove(id: number) {
-    const findContact = await this.ContactRepository.findone(id);
+    const findContact = await this.ContactRepository.findOne(id);
     if (!findContact) throw new NotFoundException('Contact not found');
     return this.ContactRepository.delete(id);
   }

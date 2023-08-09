@@ -1,20 +1,17 @@
 "use client";
 
 import { API } from "@/services/api";
-import { createContext, useContext, useState } from "react";
+import { createContext } from "react";
 import { IProviderChildrenProps, IUserRequestContext } from "./interfaces";
 import { Userdata } from "@/@types/users.types";
 import { parseCookies } from "nookies";
-import { AuthContext } from "./authContext";
 
 export const USerCrudContext = createContext<IUserRequestContext>(
   {} as IUserRequestContext
 );
 
 export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
-  const { token } = useContext(AuthContext);
   const cookies = parseCookies();
-  const [userData, setUserData] = useState<Userdata | null>(null);
 
   if (cookies["ccm.token"]) {
     API.defaults.headers.common.authorization = `Bearer ${cookies["ccm.token"]}`;
@@ -23,7 +20,6 @@ export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
   function getUserById(userId: number) {
     return API.get<Userdata>(`/users/${userId}`)
       .then((response) => {
-        console.log("GETUSERBYID", response.data);
         const userInfo: Userdata = response.data;
         return userInfo;
       })

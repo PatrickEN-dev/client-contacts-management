@@ -2,21 +2,27 @@
 
 import styles from "./styles.module.scss";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
-import { ModalDeleteContact, ModalUpdateContact } from "../Modal";
-import { ContactData } from "@/@types/contacts.types";
+
+import { ContactData, ContactDataRequest } from "@/@types/contacts.types";
+import { useContext, useState } from "react";
+import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 
 interface ICardProps {
   contact: ContactData;
 }
 
 export default function Card({ contact }: ICardProps) {
-  console.log("USER ID NO CARD", contact.id);
-  const handleEditClick = () => {
-    ModalUpdateContact();
+  const { setShowModal, setContactInfo, contactInfo } =
+    useContext(UserContactsContext);
+
+  const handleUpdateModalOpen = (contact: ContactData) => {
+    setContactInfo(contact);
+    setShowModal("updateContactModal");
   };
 
-  const handleDeleteClick = () => {
-    ModalDeleteContact();
+  const handleDeleteModalOpen = (contact: ContactData) => {
+    setShowModal("deleteContactModal");
+    setContactInfo(contact);
   };
 
   return (
@@ -28,11 +34,11 @@ export default function Card({ contact }: ICardProps) {
           </h3>
           <div className={styles.icons}>
             <FaPencilAlt
-              onClick={handleEditClick}
+              onClick={() => handleUpdateModalOpen(contact)}
               className={styles.editIcon}
             />
             <FaTrash
-              onClick={handleDeleteClick}
+              onClick={() => handleDeleteModalOpen(contact)}
               className={styles.deleteIcon}
             />
           </div>

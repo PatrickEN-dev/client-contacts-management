@@ -9,23 +9,37 @@ import styles from "./styles.module.scss";
 
 export default function FormCreateContactModal() {
   const {
+    createContactRequest,
+    updateContactRequest,
+    closeModal,
+    contactInfo,
+    showModal,
+  } = useContext(UserContactsContext);
+
+  const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm<ContactDataRequest>({
     resolver: zodResolver(contactSchemaRequest),
+    defaultValues: contactInfo,
   });
 
-  const { createContactRequest, closeModal } = useContext(UserContactsContext);
-
   const submit = (formData: ContactDataRequest) => {
-    createContactRequest(formData);
+    if (showModal == "createContactModal") createContactRequest(formData);
+    if (showModal == "updateContactModal")
+      updateContactRequest(formData, contactInfo.id);
   };
 
   return (
     <section className={styles.modalContainer}>
       <div>
-        <h2>Novo contato</h2>
+        {showModal == "createContactModal" ? (
+          <h2>Novo contato</h2>
+        ) : (
+          <h2>Editar contato</h2>
+        )}
+
         <button className={styles.buttonClose} onClick={closeModal}>
           X
         </button>
@@ -66,7 +80,12 @@ export default function FormCreateContactModal() {
           />
           <p>{errors.telephone?.message}</p>
         </div>
-        <Button type="submit">Criar</Button>
+
+        {showModal == "createContactModal" ? (
+          <Button type="submit">Criar</Button>
+        ) : (
+          <Button type="submit">Editar</Button>
+        )}
       </form>
     </section>
   );

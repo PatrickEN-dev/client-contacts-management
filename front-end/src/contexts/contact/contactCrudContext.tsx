@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
 import { ContactData } from "@/@types/users.types";
 import { IContactContext } from "./interfaces";
-import { ContactDataRequest } from "@/@types/contacts.types";
+import { ContactDataRequest, ContactUpdateData } from "@/@types/contacts.types";
 
 export const UserContactsContext = createContext<IContactContext>(
   {} as IContactContext
@@ -16,13 +16,13 @@ export const UserContactsContext = createContext<IContactContext>(
 export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
   const [showModal, setShowModal] = useState("");
   const [contacts, setContacts] = useState<ContactData[]>([]);
-  const [contactInfo, setContactInfo] = useState<ContactDataRequest>({
+  const [contactInfo, setContactInfo] = useState<ContactData>({
+    id: 0,
     first_name: "",
     last_name: "",
     email: "",
     telephone: "",
   });
-  const [page, setPage] = useState(0);
   const cookies = parseCookies();
 
   if (cookies["ccm.token"]) {
@@ -48,19 +48,16 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
   };
 
   const createContactRequest = async (formData: ContactDataRequest) => {
-    console.log("FORMDATA", formData);
     API.post<ContactData>(`/contacts`, formData, {
       headers: {
         Accept: "application/json",
       },
     })
-      .then((res) => {
-        console.log("RESPONSE CREATE CONTACT", res);
+      .then(() => {
         getAllContactsRequest();
       })
       .then(() => {
         toast.success("Contato criado com sucesso!");
-        console.log("CONTACTS", contacts);
         closeModal();
       })
       .catch((err) => {
@@ -69,7 +66,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
       });
   };
 
-  const updateContactRequest = (data: ContactData, id: number) => {
+  const updateContactRequest = (data: ContactUpdateData, id: number) => {
     API.patch(`/contacts/${id}`, data)
       .then(() => {
         toast.success("Seu contato foi atualizado com sucesso!");
