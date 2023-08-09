@@ -15,7 +15,7 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 
 1. Clone este repositório em sua máquina local:
 2. git clone https://github.com/PatrickEN-dev/client-contacts-management.gitcd client-contacts-management
-   
+
 ### Frontend
 
 2. Navegue para a pasta do frontend:
@@ -23,32 +23,30 @@ Antes de executar o projeto, certifique-se de ter as seguintes ferramentas insta
 cd frontend
 
 3. Instale as dependências do frontend:
-yarn install
-ou, se estiver usando NPM
-npm install
+   yarn install
+   ou, se estiver usando NPM
+   npm install
 
 ### Backend
 
 4. Navegue para a pasta do backend:
-cd backend
-
+   cd backend
 
 5. Instale as dependências do backend:
-yarn install
-ou, se estiver usando NPM
-npm install
-
+   yarn install
+   ou, se estiver usando NPM
+   npm install
 
 ## Executando o Projeto com Docker
 
-🐳 *(Opcional) Caso você deseje executar o projeto usando Docker, siga os passos abaixo:*
+🐳 _(Opcional) Caso você deseje executar o projeto usando Docker, siga os passos abaixo:_
 
 1. Certifique-se de que o Docker esteja instalado e em execução em sua máquina.
 
 2. Navegue para a pasta raiz do projeto.
 
 3. Execute o seguinte comando para criar e iniciar os serviços do Docker:
-docker-compose up -d
+   docker-compose up -d
 
 O frontend estará disponível em: [http://localhost:3000](http://localhost:3000).
 O backend estará disponível em: [http://localhost:3001](http://localhost:3001).
@@ -58,19 +56,23 @@ O backend estará disponível em: [http://localhost:3001](http://localhost:3001)
 ### Frontend
 
 6. Para executar o frontend, utilize o seguinte comando:
-yarn dev
-ou, se estiver usando NPM
-npm run dev
-
+   yarn dev
+   ou, se estiver usando NPM
+   npm run dev
 
 O frontend estará disponível em: [http://localhost:3000](http://localhost:3000).
 
 ### Backend
 
 7. Para executar o backend em modo de desenvolvimento, utilize o seguinte comando:
-yarn start:dev
-ou, se estiver usando NPM
-npm run start:dev
+   yarn start:dev
+   ou, se estiver usando NPM
+   npm run start:dev
+
+8. Para executar as migrações do prisma para que as tabelas do banco de dados sejam criadas:
+   yarn prisma migrate dev
+   ou, se estiver usando NPM
+   npm run prisma migrate dev
 
 O backend estará disponível em: [http://localhost:3001](http://localhost:3001).
 
@@ -80,4 +82,5 @@ Se você tiver alguma dúvida, sugestão ou problema relacionado ao projeto, sin
 
 Nome: Patrick
 Email: patrickandreia2505@gmail.com
+
 ---
