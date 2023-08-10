@@ -1,7 +1,11 @@
-import ToastProvider from "@/contexts/Toast/toastifyContext";
+"use client";
+
+import { AuthProvider } from "@/contexts/users/authContext";
+import { UsercrudProvider } from "@/contexts/users/userCrudContext";
 import { UsercontactsProvider } from "@/contexts/contact/contactCrudContext";
-import Link from "next/link";
+import ToastProvider from "@/contexts/Toast/toastifyContext";
 import styles from "./styles.module.scss";
+import Header from "@/components/Header";
 
 export default function RootLayout({
   children,
@@ -11,21 +15,16 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={styles.layout}>
-        <UsercontactsProvider>
-          {/* <ToastProvider> */}
-          <header>
-            <nav>
-              <li>
-                <Link href={"/"}>Home</Link>
-              </li>
-              <li>
-                <Link href={`/contacts`}>Perfil</Link>
-              </li>
-            </nav>
-          </header>
-          {children}
-          {/* </ToastProvider> */}
-        </UsercontactsProvider>
+        <AuthProvider>
+          <UsercrudProvider>
+            <UsercontactsProvider>
+              <ToastProvider>
+                <Header />
+                {children}
+              </ToastProvider>
+            </UsercontactsProvider>
+          </UsercrudProvider>
+        </AuthProvider>
       </body>
     </html>
   );

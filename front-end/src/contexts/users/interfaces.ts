@@ -1,6 +1,11 @@
 import React, { Dispatch } from "react";
 import { SetStateAction } from "react";
-import { IUser, LoginData, Userdata } from "@/@types/users.types";
+import {
+  IUserInfos,
+  LoginData,
+  UserData,
+  UserUpdateData,
+} from "@/@types/users.types";
 
 export interface IProviderChildrenProps {
   children: React.ReactNode;
@@ -9,14 +14,20 @@ export interface IProviderChildrenProps {
 export interface authProviderData {
   setToken: Dispatch<SetStateAction<string>>;
   token: string | undefined;
-  registerUser: (userData: Userdata) => void;
+  user: IUserInfos;
+  setUser: React.Dispatch<SetStateAction<IUserInfos>>;
+
+  registerUser: (userData: UserData) => void;
   loginUser: (loginData: LoginData) => void;
+  autoLogin: () => Promise<void>;
 }
 
 export interface IUserRequestContext {
-  // user: authProviderData | null;
-  // setUser: React.Dispatch<SetStateAction<authProviderData | null>>;
-  getUserById: (userId: number) => Promise<Userdata>;
+  getUserById: () => Promise<void>;
+  updateUserRequest: (data: UserUpdateData, id: number) => Promise<void>;
+  deleteUserRequest: (id: number) => Promise<void>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+  loading: boolean;
 }
 
 export type iAxiosError = {

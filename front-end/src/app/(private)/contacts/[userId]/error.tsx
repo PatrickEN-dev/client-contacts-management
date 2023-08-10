@@ -1,4 +1,5 @@
 "use client";
+
 import { IErrorProps } from "@/@types/error.types";
 import { useEffect } from "react";
 

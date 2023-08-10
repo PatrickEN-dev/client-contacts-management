@@ -16,6 +16,8 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt/jwt.auth.guard';
+import { CurrentClient } from '../auth/decorators/retrieveUser.decorator';
+import { User } from './entities/user.entity';
 
 @ApiTags('users')
 @Controller('users')
@@ -28,7 +30,7 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get()
+  @Get('all')
   @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
@@ -36,12 +38,12 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get(':id')
+  @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.usersService.findOne(Number(id));
+  async findOne(@CurrentClient() user: User) {
+    return await this.usersService.findOne(user.id);
   }
 
   @Patch(':id')

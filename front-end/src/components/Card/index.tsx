@@ -12,8 +12,7 @@ interface ICardProps {
 }
 
 export default function Card({ contact }: ICardProps) {
-  const { setShowModal, setContactInfo, contactInfo } =
-    useContext(UserContactsContext);
+  const { setShowModal, setContactInfo } = useContext(UserContactsContext);
 
   const handleUpdateModalOpen = (contact: ContactData) => {
     setContactInfo(contact);

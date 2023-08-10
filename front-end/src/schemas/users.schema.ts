@@ -11,6 +11,8 @@ export const userSchema = z.object({
   password: z.string().min(8).nonempty("Campo obrigatório"),
 });
 
+export const userUpdateSchema = userSchema.partial();
+
 export const loginSchema = z.object({
   email: z.string().email("Deve ser um e-mail").nonempty("Campo obrigatório"),
   password: z.string().nonempty("Senha é obrigatória"),

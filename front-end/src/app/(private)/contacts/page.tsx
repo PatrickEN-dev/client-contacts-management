@@ -7,7 +7,7 @@ import { Button } from "@/components/Button";
 import { useContext, useEffect } from "react";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 import { ModalCreateContact, ModalDeleteContact } from "@/components/Modal";
-import { USerCrudContext } from "@/contexts/users/userCrudContext";
+import { AuthContext } from "@/contexts/users/authContext";
 
 export default function UserPage() {
   const {
@@ -19,7 +19,6 @@ export default function UserPage() {
     contactInfo,
     getAllContactsRequest,
   } = useContext(UserContactsContext);
-  const {} = useContext(USerCrudContext);
 
   const handleCreateModalOpen = () => {
     setShowModal("createContactModal");
@@ -44,11 +43,12 @@ export default function UserPage() {
 
       {showModal === "createContactModal" ||
         (showModal === "updateContactModal" && <ModalCreateContact />)}
+
       {showModal === "deleteContactModal" && (
         <ModalDeleteContact id={contactInfo.id} />
       )}
 
-      <Button type="button" onClick={() => handleCreateModalOpen}>
+      <Button type="button" onClick={() => handleCreateModalOpen()}>
         Criar contato
       </Button>
 

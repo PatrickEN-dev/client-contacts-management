@@ -1,5 +1,5 @@
-import FormCreateContactModal from "../Forms/FormModals/FormCreateContactModal";
-import FormDeleteContactModal from "../Forms/FormModals/FormDeleteContact";
+import FormCreateContactModal from "../Forms/FormModals/contacts/FormCreateContactModal";
+import FormDeleteContactModal from "../Forms/FormModals/contacts/FormDeleteContact";
 
 interface IModalProps {
   id: number;

@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { IProviderChildrenProps, authProviderData } from "./interfaces";
-import { LoginData, Userdata } from "@/@types/users.types";
+import { IUserInfos, LoginData, UserData } from "@/@types/users.types";
 import { API } from "@/services/api";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { setCookie } from "nookies";
 
@@ -13,9 +13,10 @@ export const AuthContext = createContext<authProviderData>(
 );
 export const AuthProvider = ({ children }: IProviderChildrenProps) => {
   const [token, setToken] = useState<string>("");
+  const [user, setUser] = useState<IUserInfos>({} as IUserInfos);
   const router = useRouter();
 
-  const registerUser = (userData: Userdata) => {
+  const registerUser = (userData: UserData) => {
     API.post("/users", userData)
       .then(() => {
         router.push("/login");
@@ -33,15 +34,47 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
           maxAge: 60 * 40,
           path: "/",
         }),
-          toast.success("Login realizado com sucesso!");
+          setToken(response.data.token);
+        toast.success("Login realizado com sucesso!");
         router.push("/contacts");
       })
       .catch((err) => {
         toast.error("Não foi possível realizar o login"), console.error(err);
       });
   };
+
+  const autoLogin = async () => {
+    if (token) {
+      try {
+        const response = await API.get("/users", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        setUser(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    autoLogin();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ loginUser, registerUser, token, setToken }}>
+    <AuthContext.Provider
+      value={{
+        loginUser,
+        registerUser,
+        token,
+        setToken,
+        user,
+        setUser,
+        autoLogin,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
