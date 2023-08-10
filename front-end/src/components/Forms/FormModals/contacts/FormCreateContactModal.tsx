@@ -25,26 +25,27 @@ export default function FormCreateContactModal() {
     defaultValues: contactInfo,
   });
 
-  const submit = (formData: ContactDataRequest) => {
-    if (showModal == "createContactModal") createContactRequest(formData);
-    if (showModal == "updateContactModal")
-      updateContactRequest(formData, contactInfo.id);
+  const isCreating = showModal === "createContactModal";
+  const formTitle = isCreating ? "Novo contato" : "Editar contato";
+  const submitButtonText = isCreating ? "Criar" : "Editar";
+
+  const onSubmit = (formData: ContactDataRequest) => {
+    const requestFunction = isCreating
+      ? createContactRequest
+      : updateContactRequest;
+    const contactId = isCreating ? -1 : contactInfo.id;
+    requestFunction(formData, contactId);
   };
 
   return (
     <section className={styles.modalContainer}>
       <div>
-        {showModal == "createContactModal" ? (
-          <h2>Novo contato</h2>
-        ) : (
-          <h2>Editar contato</h2>
-        )}
-
+        <h2>{formTitle}</h2>
         <button className={styles.buttonClose} onClick={closeModal}>
           X
         </button>
       </div>
-      <form onSubmit={handleSubmit(submit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <input
             type="text"
@@ -81,11 +82,7 @@ export default function FormCreateContactModal() {
           <p>{errors.telephone?.message}</p>
         </div>
 
-        {showModal == "createContactModal" ? (
-          <Button type="submit">Criar</Button>
-        ) : (
-          <Button type="submit">Editar</Button>
-        )}
+        <Button type="submit">{submitButtonText}</Button>
       </form>
     </section>
   );

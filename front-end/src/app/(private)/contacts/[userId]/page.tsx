@@ -1,5 +1,7 @@
 "use client";
 
+import { ModalDeleteUser, ModalUpdateUser } from "@/components/Modal";
+import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 import { AuthContext } from "@/contexts/users/authContext";
 import { USerCrudContext } from "@/contexts/users/userCrudContext";
 import { parseCookies } from "nookies";
@@ -8,6 +10,7 @@ import { useContext, useEffect } from "react";
 export default function UserDatailsPage() {
   const { getUserById, loading } = useContext(USerCrudContext);
   const { user } = useContext(AuthContext);
+  const { showModal, setShowModal } = useContext(UserContactsContext);
 
   const cookies = parseCookies();
   const token = cookies["ccm.token"];
@@ -25,6 +28,9 @@ export default function UserDatailsPage() {
       ) : (
         <>
           <section>
+            {showModal === "updateUser" && <ModalUpdateUser />}
+            {showModal === "deleteUser" && <ModalDeleteUser id={user.id} />}
+
             <div>
               <h2>
                 Usuário: {user.first_name} {user.last_name}
@@ -33,10 +39,14 @@ export default function UserDatailsPage() {
               <h3>Telefone: {user.telephone}</h3>
             </div>
 
-            <button onClick={() => {}}>Editar perfil</button>
+            <button onClick={() => setShowModal("updateUser")}>
+              Editar perfil
+            </button>
           </section>
 
-          <button onClick={() => {}}>Deletar perfil</button>
+          <button onClick={() => setShowModal("deleteUser")}>
+            Deletar perfil
+          </button>
         </>
       )}
     </main>

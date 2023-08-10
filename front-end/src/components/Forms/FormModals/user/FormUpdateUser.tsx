@@ -6,10 +6,10 @@ import { useForm } from "react-hook-form";
 import { USerCrudContext } from "@/contexts/users/userCrudContext";
 import { AuthContext } from "@/contexts/users/authContext";
 import { UserUpdateData } from "@/@types/users.types";
-import styles from "./styles.module.scss";
 import { userUpdateSchema } from "@/schemas/users.schema";
+import styles from "../styles.module.scss";
 
-export default function FormCreateContactModal() {
+export default function FormUpdateUserModal() {
   const { closeModal } = useContext(UserContactsContext);
   const { updateUserRequest } = useContext(USerCrudContext);
   const { user } = useContext(AuthContext);

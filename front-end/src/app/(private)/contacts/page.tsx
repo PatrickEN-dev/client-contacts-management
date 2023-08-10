@@ -7,7 +7,6 @@ import { Button } from "@/components/Button";
 import { useContext, useEffect } from "react";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 import { ModalCreateContact, ModalDeleteContact } from "@/components/Modal";
-import { AuthContext } from "@/contexts/users/authContext";
 
 export default function UserPage() {
   const {
@@ -21,7 +20,7 @@ export default function UserPage() {
   } = useContext(UserContactsContext);
 
   const handleCreateModalOpen = () => {
-    setShowModal("createContactModal");
+    setShowModal("createContact");
     setContactInfo({
       id: 0,
       first_name: "",
@@ -41,10 +40,10 @@ export default function UserPage() {
     <main className={styles.userPage}>
       <h1>Página Principal usuário logado</h1>
 
-      {showModal === "createContactModal" ||
-        (showModal === "updateContactModal" && <ModalCreateContact />)}
+      {showModal === "createContact" ||
+        (showModal === "updateContact" && <ModalCreateContact />)}
 
-      {showModal === "deleteContactModal" && (
+      {showModal === "deleteContact" && (
         <ModalDeleteContact id={contactInfo.id} />
       )}
 

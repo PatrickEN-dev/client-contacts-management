@@ -16,11 +16,11 @@ export default function Card({ contact }: ICardProps) {
 
   const handleUpdateModalOpen = (contact: ContactData) => {
     setContactInfo(contact);
-    setShowModal("updateContactModal");
+    setShowModal("updateContact");
   };
 
   const handleDeleteModalOpen = (contact: ContactData) => {
-    setShowModal("deleteContactModal");
+    setShowModal("deleteContact");
     setContactInfo(contact);
   };
 

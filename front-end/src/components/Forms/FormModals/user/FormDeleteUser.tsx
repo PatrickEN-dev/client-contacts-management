@@ -8,7 +8,7 @@ type FormUpdateContactProps = {
   id: number;
 };
 
-export default function FormDeleteContactModal({ id }: FormUpdateContactProps) {
+export default function FormDeleteUserModal({ id }: FormUpdateContactProps) {
   const { closeModal } = useContext(UserContactsContext);
   const { deleteUserRequest } = useContext(USerCrudContext);
 
