@@ -25,7 +25,7 @@ export default function FormCreateContactModal() {
     defaultValues: contactInfo,
   });
 
-  const isCreating = showModal === "createContactModal";
+  const isCreating = showModal === "createContact";
   const formTitle = isCreating ? "Novo contato" : "Editar contato";
   const submitButtonText = isCreating ? "Criar" : "Editar";
 

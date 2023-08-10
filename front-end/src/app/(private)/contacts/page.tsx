@@ -40,8 +40,8 @@ export default function UserPage() {
     <main className={styles.userPage}>
       <h1>Página Principal usuário logado</h1>
 
-      {showModal === "createContact" ||
-        (showModal === "updateContact" && <ModalCreateContact />)}
+      {showModal === "createContact" ? <ModalCreateContact /> : null}
+      {showModal === "updateContact" ? <ModalCreateContact /> : null}
 
       {showModal === "deleteContact" && (
         <ModalDeleteContact id={contactInfo.id} />

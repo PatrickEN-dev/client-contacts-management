@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/schemas/users.schema";
 import { AuthContext } from "@/contexts/users/authContext";
-import { Userdata } from "@/@types/users.types";
+import { UserData } from "@/@types/users.types";
 import Link from "next/link";
 
 export default function RegisterForm() {
@@ -13,11 +13,11 @@ export default function RegisterForm() {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<Userdata>({ resolver: zodResolver(userSchema) });
+  } = useForm<UserData>({ resolver: zodResolver(userSchema) });
 
   const { registerUser } = useContext(AuthContext);
 
-  const submit = (formData: Userdata) => {
+  const submit = (formData: UserData) => {
     registerUser(formData);
   };
 
