@@ -39,7 +39,7 @@ export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
 
   const updateUserRequest = async (data: UserUpdateData, id: number) => {
     try {
-      await API.put(`users/${id}`, data);
+      await API.patch(`/users/${id}`, data);
 
       setUser({ ...data, ...user });
       toast.success("Seu perfil foi atualizado com sucesso!");
@@ -51,7 +51,7 @@ export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
 
   const deleteUserRequest = async (id: number) => {
     try {
-      await API.delete(`/users${id}`);
+      await API.delete(`/users/${id}`);
 
       setUser({
         id: 0,

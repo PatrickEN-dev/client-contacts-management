@@ -20,6 +20,7 @@ export interface authProviderData {
   registerUser: (userData: UserData) => void;
   loginUser: (loginData: LoginData) => void;
   autoLogin: () => Promise<void>;
+  logout: () => void;
 }
 
 export interface IUserRequestContext {

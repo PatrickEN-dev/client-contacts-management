@@ -63,6 +63,10 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
     autoLogin();
   }, []);
 
+  const logout = () => {
+    setUser({} as IUserInfos);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -73,6 +77,7 @@ export const AuthProvider = ({ children }: IProviderChildrenProps) => {
         user,
         setUser,
         autoLogin,
+        logout,
       }}
     >
       {children}

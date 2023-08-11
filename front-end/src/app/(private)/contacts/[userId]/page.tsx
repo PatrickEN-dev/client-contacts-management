@@ -6,6 +6,7 @@ import { AuthContext } from "@/contexts/users/authContext";
 import { USerCrudContext } from "@/contexts/users/userCrudContext";
 import { parseCookies } from "nookies";
 import { useContext, useEffect } from "react";
+import styles from "./styles.module.scss";
 
 export default function UserDatailsPage() {
   const { getUserById, loading } = useContext(USerCrudContext);
@@ -20,7 +21,7 @@ export default function UserDatailsPage() {
   }, [token]);
 
   return (
-    <main>
+    <main className={styles.userPage}>
       {loading ? (
         <div>
           <h1>Carregando...</h1>
