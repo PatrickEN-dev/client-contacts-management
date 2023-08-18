@@ -29,9 +29,7 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
     API.defaults.headers.common.authorization = `Bearer ${cookies["ccm.token"]}`;
   }
 
-  const closeModal = () => {
-    setShowModal("");
-  };
+  const closeModal = () => setShowModal("");
 
   const getAllContactsRequest = () => {
     API.get(`/contacts`)
@@ -39,11 +37,10 @@ export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
         const contactData = res.data;
         setContacts(contactData);
         localStorage.setItem("contacts", JSON.stringify(contactData));
-        closeModal();
       })
       .catch((error) => {
         console.error(error);
-        toast.error("Não foi possível deletar seu contato");
+        toast.error("Não foi possível renderizar seus contatos");
       });
   };
 
