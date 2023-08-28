@@ -4,11 +4,9 @@ import { useContext } from "react";
 import { USerCrudContext } from "@/contexts/users/userCrudContext";
 import styles from "../styles.module.scss";
 
-type FormUpdateContactProps = {
-  id: number;
-};
+type FormDeleteUserModalProps = { id: number };
 
-export default function FormDeleteUserModal({ id }: FormUpdateContactProps) {
+export default function FormDeleteUserModal({ id }: FormDeleteUserModalProps) {
   const { closeModal } = useContext(UserContactsContext);
   const { deleteUserRequest } = useContext(USerCrudContext);
 

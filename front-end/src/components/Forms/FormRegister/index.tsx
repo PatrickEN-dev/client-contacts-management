@@ -17,9 +17,7 @@ export default function RegisterForm() {
 
   const { registerUser } = useContext(AuthContext);
 
-  const submit = (formData: UserData) => {
-    registerUser(formData);
-  };
+  const submit = (formData: UserData) => registerUser(formData);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submit)}>

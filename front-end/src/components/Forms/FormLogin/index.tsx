@@ -17,9 +17,7 @@ export default function LoginForm() {
 
   const { loginUser } = useContext(AuthContext);
 
-  const submit = (formData: LoginData) => {
-    loginUser(formData);
-  };
+  const submit = (formData: LoginData) => loginUser(formData);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(submit)}>
