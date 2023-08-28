@@ -7,6 +7,7 @@ import { IUserInfos, UserData, UserUpdateData } from "@/@types/users.types";
 import { parseCookies } from "nookies";
 import { toast } from "react-toastify";
 import { AuthContext } from "./authContext";
+import { useRequest } from "@/hooks/useRequest";
 
 export const USerCrudContext = createContext<IUserRequestContext>(
   {} as IUserRequestContext
@@ -22,49 +23,50 @@ export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
     API.defaults.headers.common.authorization = `Bearer ${cookies["ccm.token"]}`;
   }
 
-  function getUserById() {
-    return API.get<IUserInfos>(`/users`)
-      .then((response) => {
+  const request = useRequest();
+
+  const getUserById = () => {
+    return request({
+      tryFn: async () => {
+        const response = await API.get<IUserInfos>(`/users`);
         const userInfo: IUserInfos = response.data;
-
         setUser(userInfo);
-
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
+      },
+      onErrorFn: () => {
         throw new Error("Usuário não encontrado");
-      });
-  }
+      },
+    });
+  };
 
   const updateUserRequest = async (data: UserUpdateData, id: number) => {
-    try {
-      await API.patch(`/users/${id}`, data);
-
-      setUser({ ...data, ...user });
-      toast.success("Seu perfil foi atualizado com sucesso!");
-    } catch (error) {
-      console.error(error);
-      toast.error("Não foi póssível atualizar suas informações");
-    }
+    await request({
+      tryFn: async () => {
+        await API.patch(`/users/${id}`, data);
+        setUser({ ...data, ...user });
+        toast.success("Seu perfil foi atualizado com sucesso!");
+      },
+      onErrorFn: () => {
+        toast.error("Não foi possível atualizar suas informações");
+      },
+    });
   };
 
   const deleteUserRequest = async (id: number) => {
-    try {
-      await API.delete(`/users/${id}`);
-
-      setUser({
-        id: 0,
-        first_name: "",
-        last_name: "",
-        email: "",
-        telephone: "",
-        password: "",
-      });
-    } catch (error) {
-      console.error(error);
-      toast.error("Não foi póssível deletar seu perfil");
-    }
+    await request({
+      tryFn: async () => {
+        await API.delete(`/users/${id}`);
+        setUser({
+          id: 0,
+          first_name: "",
+          last_name: "",
+          email: "",
+          telephone: "",
+          password: "",
+        });
+      },
+      onErrorFn: () => toast.error("Não foi possível deletar seu perfil"),
+    });
   };
 
   return (
