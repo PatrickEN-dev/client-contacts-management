@@ -2,18 +2,19 @@
 
 import { API } from "@/services/api";
 import { createContext, useContext, useState } from "react";
-import { IProviderChildrenProps, IUserRequestContext } from "./interfaces";
-import { IUserInfos, UserData, UserUpdateData } from "@/@types/users.types";
+import { IUserInfos, UserUpdateData } from "@/@types/users.types";
 import { parseCookies } from "nookies";
 import { toast } from "react-toastify";
-import { AuthContext } from "./authContext";
 import { useRequest } from "@/hooks/useRequest";
+import { IChildrenProps } from "@/@types/context";
+import { IUserRequestContext } from "./interfaces";
+import { AuthContext } from "../auth";
 
 export const USerCrudContext = createContext<IUserRequestContext>(
   {} as IUserRequestContext
 );
 
-export const UsercrudProvider = ({ children }: IProviderChildrenProps) => {
+export const UsercrudProvider = ({ children }: IChildrenProps) => {
   const { user, setUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 

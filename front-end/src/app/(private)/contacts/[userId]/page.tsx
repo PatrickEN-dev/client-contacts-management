@@ -2,11 +2,11 @@
 
 import { ModalDeleteUser, ModalUpdateUser } from "@/components/Modal";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
-import { AuthContext } from "@/contexts/users/authContext";
 import { USerCrudContext } from "@/contexts/users/userCrudContext";
 import { parseCookies } from "nookies";
 import { useContext, useEffect } from "react";
 import styles from "./styles.module.scss";
+import { AuthContext } from "@/contexts/auth";
 
 export default function UserDatailsPage() {
   const { getUserById, loading } = useContext(USerCrudContext);

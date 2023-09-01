@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schemas/users.schema";
 import { useContext } from "react";
 import styles from "./styles.module.scss";
-import { AuthContext } from "@/contexts/users/authContext";
 import Link from "next/link";
+import { AuthContext } from "@/contexts/auth";
 
 export default function LoginForm() {
   const {

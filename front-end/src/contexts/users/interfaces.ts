@@ -1,27 +1,6 @@
-import React, { Dispatch } from "react";
+import { Dispatch } from "react";
 import { SetStateAction } from "react";
-import {
-  IUserInfos,
-  LoginData,
-  UserData,
-  UserUpdateData,
-} from "@/@types/users.types";
-
-export interface IProviderChildrenProps {
-  children: React.ReactNode;
-}
-
-export interface authProviderData {
-  setToken: Dispatch<SetStateAction<string>>;
-  token: string | undefined;
-  user: IUserInfos;
-  setUser: React.Dispatch<SetStateAction<IUserInfos>>;
-
-  registerUser: (userData: UserData) => void;
-  loginUser: (loginData: LoginData) => void;
-  autoLogin: () => Promise<void>;
-  logout: () => void;
-}
+import { UserUpdateData } from "@/@types/users.types";
 
 export interface IUserRequestContext {
   getUserById: () => Promise<void>;

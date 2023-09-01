@@ -4,10 +4,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { USerCrudContext } from "@/contexts/users/userCrudContext";
-import { AuthContext } from "@/contexts/users/authContext";
 import { UserUpdateData } from "@/@types/users.types";
 import { userUpdateSchema } from "@/schemas/users.schema";
 import styles from "../styles.module.scss";
+import { AuthContext } from "@/contexts/auth";
 
 export default function FormUpdateUserModal() {
   const { closeModal } = useContext(UserContactsContext);

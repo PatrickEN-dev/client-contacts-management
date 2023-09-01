@@ -1,4 +1,4 @@
-import React, { Dispatch } from "react";
+import { Dispatch } from "react";
 import { SetStateAction } from "react";
 
 export type IModalContext = {

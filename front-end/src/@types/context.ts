@@ -1,5 +1,3 @@
-interface iChildrenProps {
+export interface IChildrenProps {
   children: React.ReactNode;
 }
-
-export type { iChildrenProps };

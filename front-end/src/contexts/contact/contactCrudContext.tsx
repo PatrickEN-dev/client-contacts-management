@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useState } from "react";
-import { IProviderChildrenProps } from "../users/interfaces";
 import { API } from "@/services/api";
 import { toast } from "react-toastify";
 import { parseCookies } from "nookies";
@@ -9,12 +8,13 @@ import { ContactData } from "@/@types/users.types";
 import { IContactContext } from "./interfaces";
 import { ContactDataRequest, ContactUpdateData } from "@/@types/contacts.types";
 import { useRequest } from "@/hooks/useRequest";
+import { IChildrenProps } from "@/@types/context";
 
 export const UserContactsContext = createContext<IContactContext>(
   {} as IContactContext
 );
 
-export const UsercontactsProvider = ({ children }: IProviderChildrenProps) => {
+export const UsercontactsProvider = ({ children }: IChildrenProps) => {
   const [showModal, setShowModal] = useState("");
   const [contacts, setContacts] = useState<ContactData[]>([]);
   const [contactInfo, setContactInfo] = useState<ContactData>({

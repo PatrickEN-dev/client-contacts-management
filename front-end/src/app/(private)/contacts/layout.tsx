@@ -1,11 +1,11 @@
 "use client";
 
-import { AuthProvider } from "@/contexts/users/authContext";
 import { UsercrudProvider } from "@/contexts/users/userCrudContext";
 import { UsercontactsProvider } from "@/contexts/contact/contactCrudContext";
-import ToastProvider from "@/contexts/Toast/toastifyContext";
 import styles from "./styles.module.scss";
 import Header from "@/components/Header";
+import ToastProvider from "@/components/Toast";
+import { AuthProvider } from "@/contexts/auth";
 
 export default function RootLayout({
   children,

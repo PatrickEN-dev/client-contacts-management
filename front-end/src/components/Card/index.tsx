@@ -3,8 +3,8 @@
 import styles from "./styles.module.scss";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 
-import { ContactData, ContactDataRequest } from "@/@types/contacts.types";
-import { useContext, useState } from "react";
+import { ContactData } from "@/@types/contacts.types";
+import { useContext } from "react";
 import { UserContactsContext } from "@/contexts/contact/contactCrudContext";
 
 interface ICardProps {

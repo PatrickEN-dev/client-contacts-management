@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { AuthContext } from "@/contexts/users/authContext";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/contexts/auth";
 
 export default function Header() {
   const { user } = useContext(AuthContext);

@@ -1,17 +1,15 @@
 "use client";
 
-import { iChildrenProps } from "@/@types/context";
 import { createContext, useState } from "react";
 import { IModalContext } from "./interfaces";
+import { IChildrenProps } from "@/@types/context";
 
 export const ModalContext = createContext<IModalContext>({} as IModalContext);
 
-export const ModalProvider = ({ children }: iChildrenProps) => {
+export const ModalProvider = ({ children }: IChildrenProps) => {
   const [showModal, setShowModal] = useState<string>("");
 
-  const closeModal = () => {
-    setShowModal("");
-  };
+  const closeModal = () => setShowModal("");
 
   return (
     <ModalContext.Provider

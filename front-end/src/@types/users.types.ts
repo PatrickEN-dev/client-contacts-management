@@ -31,6 +31,9 @@ export interface IUserDatails {
 }
 
 export type UserData = z.infer<typeof userSchema>;
+
 export type UserUpdateData = z.infer<typeof userUpdateSchema>;
+
 export type LoginData = z.infer<typeof loginSchema>;
+
 export type ContactData = z.infer<typeof contactsSchema>;

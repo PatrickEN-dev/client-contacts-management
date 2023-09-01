@@ -1,15 +1,17 @@
 import Link from "next/link";
 import styles from "./styles.module.scss";
-import ToastProvider from "@/contexts/Toast/toastifyContext";
-import { AuthProvider } from "@/contexts/users/authContext";
+import { AuthProvider } from "@/contexts/auth";
+import ToastProvider from "@/components/Toast";
+import { IChildrenProps } from "@/@types/context";
+
+interface RootLayoutProps extends IChildrenProps {
+  homePage?: boolean;
+}
 
 export default function RootLayout({
   children,
   homePage = false,
-}: {
-  children: React.ReactNode;
-  homePage?: boolean;
-}) {
+}: RootLayoutProps) {
   return (
     <html lang="pt-BR">
       <body className={styles.layout}>

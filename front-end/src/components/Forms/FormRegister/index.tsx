@@ -1,11 +1,11 @@
 import { Button } from "@/components/Button";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
-import styles from "./styles.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { userSchema } from "@/schemas/users.schema";
-import { AuthContext } from "@/contexts/users/authContext";
 import { UserData } from "@/@types/users.types";
+import { AuthContext } from "@/contexts/auth";
+import styles from "./styles.module.scss";
 import Link from "next/link";
 
 export default function RegisterForm() {

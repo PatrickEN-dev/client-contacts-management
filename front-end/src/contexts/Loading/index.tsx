@@ -2,13 +2,13 @@
 
 import { createContext, useState } from "react";
 import { ILoadingContext } from "./interfaces";
-import { iChildrenProps } from "@/@types/context";
+import { IChildrenProps } from "@/@types/context";
 
 export const LoadingContext = createContext<ILoadingContext>(
   {} as ILoadingContext
 );
 
-export const LoadingProvider = ({ children }: iChildrenProps) => {
+export const LoadingProvider = ({ children }: IChildrenProps) => {
   const [loading, setLoading] = useState(true);
 
   return (
